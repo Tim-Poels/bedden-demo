@@ -1,0 +1,43 @@
+.Header {
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 192, 110);
+}
+
+.configurator-step {
+  height: 8vh;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 10% 70% 70% 10% / 10% 100% 100% 20px ;
+  background-color: white;
+  margin-left: 25px;
+  border: 3px solid white;
+}
+
+.configurator-step.active {
+  background-color: rgb(255, 192, 110);
+}
+
+.configurator-step-text {
+  height: min-content;
+  font-size: 5vh;
+  color: rgb(255, 145, 0);
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.configurator-step.active > .configurator-step-text {
+  color: white;
+}
+
+.arrow-point {
+  width: 35px;
+  height: 8vh;
+  border-radius: 0% 100% 100% 0% / 50% 50% 50% 50% ;
+}
