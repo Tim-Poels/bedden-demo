@@ -1,0 +1,10 @@
+.Body {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+}
+
+.CanvasElement {
+  height: 100%;
+  width: 67%;
+}

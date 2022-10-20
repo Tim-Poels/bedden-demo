@@ -35,9 +35,3 @@
 .configurator-step.active > .configurator-step-text {
   color: white;
 }
-
-.arrow-point {
-  width: 35px;
-  height: 8vh;
-  border-radius: 0% 100% 100% 0% / 50% 50% 50% 50% ;
-}
