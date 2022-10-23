@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="App">
       <Header step={useSteps} />
-      <Body setSteps={setSteps} currentStep={useSteps} />
+      <Body setSteps={setSteps} useSteps={useSteps} />
       {/* <Footer /> */}
     </div>
   );

@@ -11,7 +11,7 @@ const Body = (props) => {
       <button onClick={() => { props.setSteps(4) }}> change to step 4 </button>
       <button onClick={() => { props.setSteps(5) }}> change to step 5 </button> */}
       <CanvasElement />
-      <SelectorElement setSteps={props.setSteps} currentStep={props.useSteps}/>
+      <SelectorElement setSteps={props.setSteps} useSteps={props.useSteps}/>
     </div>
   );
 }

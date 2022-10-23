@@ -1,0 +1,12 @@
+.body-steps {
+  width: 100%;
+  height: 100%;
+}
+
+.body-steps > .step-header {
+  height: 7.5vh;
+  width: 100%;
+  background-color: white;
+}
+
+/* rgb(255, 192, 110); */
