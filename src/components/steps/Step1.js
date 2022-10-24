@@ -1,7 +1,7 @@
 const Step1 = (props) => {
   return (
     <div className="body-steps">
-      <div class="step-header">
+      <div className="step-header">
         <div className="white-box">
           <p className="step">step</p>
           <p className="number">1</p>
