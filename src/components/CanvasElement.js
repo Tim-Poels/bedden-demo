@@ -8,6 +8,7 @@ const CameraController = () => {
   const { camera, gl } = useThree();
   useEffect(
     () => {
+      camera.position.set(-3, 3, 3)
       const controls = new OrbitControls(camera, gl.domElement);
 
       controls.minDistance = 2;
@@ -44,7 +45,7 @@ const Controls = () => {
 
 const Bed = () => {
   const { scene } = useGLTF('bed-test.glb')
-  scene.children[0].position.set(0, -1, 0);
+  scene.children[0].position.set(0, 0, 0);
   return <primitive object={scene} />
 }
 
