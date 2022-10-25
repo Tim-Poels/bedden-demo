@@ -4,7 +4,6 @@ import Step1 from "./steps/Step1.js"
 
 const SelectorElement = (props) => {
   let renderedStep;
-  console.log(props.useSteps)
   switch (props.useSteps) {
     case 1: 
       renderedStep = <Step1 setSteps={props.setSteps}/>

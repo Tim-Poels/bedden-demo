@@ -1,5 +1,5 @@
 import "./Body.css"
-import CanvasElement from "./CanvasElement.js";
+import { CanvasElement } from "./CanvasElement.js"
 import SelectorElement from "./SelectorElement.js";
 
 const Body = (props) => {

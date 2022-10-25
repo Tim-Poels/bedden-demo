@@ -1,52 +1,145 @@
 import React, { Suspense, useRef, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import * as THREE from "three"
 import { useGLTF } from "@react-three/drei"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
-const CameraController = () => {
-  const { camera, gl } = useThree();
-  useEffect(
-    () => {
-      camera.position.set(-3, 3, 3)
-      const controls = new OrbitControls(camera, gl.domElement);
+export const CanvasElement = (props) => {
+  useEffect(() => {
+    // Canvas
+    const canvas = document.querySelector('.CanvasElement')
 
-      controls.minDistance = 2;
-      controls.maxDistance = 10;
-      return () => {
-        controls.dispose();
-      };
-    },
-    [camera, gl]
-  );
-  return null;
-};
+    // Scene
+    const scene = new THREE.Scene()
 
-const CanvasElement = (props) => {
+    // GLTFLoader
+    const loader = new GLTFLoader();
+
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath( 'https://www.gstatic.com/draco/v1/decoders/' );
+    loader.setDRACOLoader( dracoLoader );
+
+    // Load a glTF resource
+    loader.load(
+    	// resource URL
+	    'bed-test.glb',
+	    // called when the resource is loaded
+    	function ( gltf ) {
+        console.log(gltf.scene)
+        gltf.scene.children[0].position.set(0, 0, 0)
+    		scene.add( gltf.scene );
+      },
+	    // called while loading is progressing
+	    function ( xhr ) {
+		    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+	    },
+	    // called when loading has errors
+	    function ( error ) {
+	    	// console.log( error );
+	    }
+    );
+
+    // Floor
+    const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(10, 10),
+    new THREE.MeshStandardMaterial({
+        color: '#ffffff',
+        metalness: 0,
+        roughness: 0.5
+      })
+    )
+    floor.receiveShadow = true
+    floor.rotation.x = - Math.PI * 0.5
+    scene.add(floor)
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2)
+    scene.add(ambientLight)
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+    directionalLight.castShadow = true
+    directionalLight.position.set(5, 5, 5)
+    scene.add(directionalLight)
+
+    // Sizes
+    const sizes = {
+      width: window.innerWidth / 3 * 2,
+      height: window.innerHeight / 10 * 9
+    }
+
+    window.addEventListener('resize', () => {
+      // Update sizes
+      sizes.width = window.innerWidth / 3 * 2 
+      sizes.height = window.innerHeight / 10 * 9
+
+      // Update camera
+      camera.aspect = sizes.width / sizes.height
+      camera.updateProjectionMatrix()
+
+      // Update renderer
+      renderer.setSize(sizes.width, sizes.height)
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    })
+
+    // Camera
+
+    // Base camera
+    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+    camera.position.set(2, 2, 2)
+    scene.add(camera)
+
+    // Controls
+    const controls = new OrbitControls(camera, canvas)
+    controls.target.set(0, 0.75, 0)
+    controls.enableDamping = true
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas
+    })
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+    // Animate
+    const clock = new THREE.Clock()
+    let previousTime = 0
+
+    const tick = () => {
+      const elapsedTime = clock.getElapsedTime()
+      const deltaTime = elapsedTime - previousTime
+      previousTime = elapsedTime
+
+      // Update controls
+      controls.update()
+
+      // Render
+      renderer.render(scene, camera)
+
+      // Call tick again on the next frame
+      window.requestAnimationFrame(tick)
+    }
+
+    tick()
+  })
   return (
-    <Canvas className="CanvasElement">
-      <CameraController />
+    <canvas className="CanvasElement">
+      {/* <CameraController />
 
       <ambientLight intensity={0.4} />
       <directionalLight color="white" position={[0, 0, 5]} />
 
       <Suspense fallback={null}>
         <Bed />
-      </Suspense>
-    </Canvas>
+      </Suspense> */}
+    </canvas>
   );
 }
 
-const Controls = () => {
-  return (
-    <OrbitControls />
-  )
-}
-
-const Bed = () => {
-  const { scene } = useGLTF('bed-test.glb')
-  scene.children[0].position.set(0, 0, 0);
-  return <primitive object={scene} />
-}
-
-export default CanvasElement;
+// const Bed = () => {
+//   const { scene } = useGLTF('bed-test.glb')
+//   scene.children[0].position.set(0, 0, 0);
+//   return <primitive object={scene} />
+// }
