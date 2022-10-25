@@ -29,7 +29,6 @@
   color: rgb(255, 145, 0);
   font-weight: bold;
   letter-spacing: 3px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 .configurator-step.active > .configurator-step-text {

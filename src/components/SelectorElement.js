@@ -24,7 +24,7 @@ const SelectorElement = (props) => {
   }
   return (
     <div className="SelectorElement">
-      {/* {renderedStep} */}
+      {renderedStep}
     </div>
   );
 }

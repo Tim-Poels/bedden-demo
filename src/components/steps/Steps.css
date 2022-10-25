@@ -1,12 +1,63 @@
 .body-steps {
   width: 100%;
   height: 100%;
+  padding: 20px;
 }
 
 .body-steps > .step-header {
-  height: 7.5vh;
   width: 100%;
   background-color: white;
+  border-bottom: 1px solid rgb(255, 192, 110);
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.step-header > .orange-box {
+  background-color: rgb(255, 192, 110);
+  height: 6vh;
+  width: 6vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  margin-right: 20px;
+}
+
+.orange-box > .step, .orange-box > .number {
+  color: white;
+  font-weight: bold;
+}
+
+.orange-box > .step {
+  font-size: 18px;
+}
+
+.orange-box > .number {
+  font-size: 28px;
+}
+
+.step-header > .title {
+  font-weight: 200;
+  font-size: 36px;
+  letter-spacing: 5px;
+  color: rgb(255, 192, 110); 
+}
+
+.body-steps > .step-container {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.selection-container {
+  padding: 10px 0px;
+}
+
+.selection-container > .title {
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: 3px;
 }
 
 /* rgb(255, 192, 110); */

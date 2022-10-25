@@ -4,14 +4,15 @@ import { useGLTF } from "@react-three/drei"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-
+import { findAllInRenderedTree } from "react-dom/test-utils";
+export var scene;
 export const CanvasElement = (props) => {
   useEffect(() => {
     // Canvas
     const canvas = document.querySelector('.CanvasElement')
 
     // Scene
-    const scene = new THREE.Scene()
+    scene = new THREE.Scene()
 
     // GLTFLoader
     const loader = new GLTFLoader();
@@ -26,17 +27,16 @@ export const CanvasElement = (props) => {
 	    'bed-test.glb',
 	    // called when the resource is loaded
     	function ( gltf ) {
-        console.log(gltf.scene)
         gltf.scene.children[0].position.set(0, 0, 0)
     		scene.add( gltf.scene );
       },
 	    // called while loading is progressing
 	    function ( xhr ) {
-		    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+		    console.log( xhr.loaded + ' loaded' );
 	    },
 	    // called when loading has errors
 	    function ( error ) {
-	    	// console.log( error );
+	    	console.log( error );
 	    }
     );
 
@@ -49,16 +49,15 @@ export const CanvasElement = (props) => {
         roughness: 0.5
       })
     )
-    floor.receiveShadow = true
+
     floor.rotation.x = - Math.PI * 0.5
     scene.add(floor)
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
     scene.add(ambientLight)
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
-    directionalLight.castShadow = true
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
     directionalLight.position.set(5, 5, 5)
     scene.add(directionalLight)
 
@@ -86,7 +85,7 @@ export const CanvasElement = (props) => {
 
     // Base camera
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-    camera.position.set(2, 2, 2)
+    camera.position.set(-2, 1.5, 2)
     scene.add(camera)
 
     // Controls
@@ -98,10 +97,11 @@ export const CanvasElement = (props) => {
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas
     })
-    renderer.shadowMap.enabled = true
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+    renderer.setClearColor( 0xffffff, 0);
 
     // Animate
     const clock = new THREE.Clock()
@@ -123,23 +123,15 @@ export const CanvasElement = (props) => {
     }
 
     tick()
+
+    return () => {
+      while (scene.children.length > 5) {
+        scene.remove(scene.children[5])
+      }
+    }
   })
   return (
     <canvas className="CanvasElement">
-      {/* <CameraController />
-
-      <ambientLight intensity={0.4} />
-      <directionalLight color="white" position={[0, 0, 5]} />
-
-      <Suspense fallback={null}>
-        <Bed />
-      </Suspense> */}
     </canvas>
   );
 }
-
-// const Bed = () => {
-//   const { scene } = useGLTF('bed-test.glb')
-//   scene.children[0].position.set(0, 0, 0);
-//   return <primitive object={scene} />
-// }
