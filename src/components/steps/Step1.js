@@ -27,10 +27,13 @@ const Step1 = (props) => {
 
       if (scene) {
         if (scene.children[4]) {
+          // Creates an object that includes the elements of the bed under associating names
           let bed = getBed(scene.children[4].children[0])
+
           // Creating a scale factor that scales it so that the bed is the exact right size
           let scaleAdjust = newWidth / currentWidth
           bed.full.scale.x *= scaleAdjust 
+
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.x /= scaleAdjust
           bed.outsidePillows.scale.x /= scaleAdjust
@@ -52,23 +55,28 @@ const Step1 = (props) => {
       console.log("width changed to " + currentLength)
       if (scene) {
         if (scene.children[4]) {
+          // Creates an object that includes the elements of the bed under associating names
           let bed = getBed(scene.children[4].children[0])
+          
           // Creating a scale factor that scales it so that the bed is the exact right size
           let scaleAdjust = newLength / currentLength
+          
           bed.full.scale.z *= scaleAdjust 
+          
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.z /= scaleAdjust
           bed.outsidePillows.scale.z /= scaleAdjust
           bed.smallBlanket.scale.z /= scaleAdjust
           bed.bigBlanket.scale.z /= scaleAdjust
-          console.log(bed.bigBlanket.position, bed.smallBlanket.position)
+
+          //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
           if (scaleAdjust < 1) {
-            bed.bigBlanket.position.z -= 100 / scaleAdjust
-            bed.smallBlanket.position.z -= 100 / scaleAdjust
+            bed.bigBlanket.position.z -= 90 * bed.bigBlanket.scale.z
+            bed.smallBlanket.position.z -= 90 * bed.smallBlanket.scale.z
           }
           else if (scaleAdjust > 1) {
-            bed.bigBlanket.position.z += 100 / scaleAdjust
-            bed.smallBlanket.position.z += 100 / scaleAdjust
+            bed.bigBlanket.position.z += 90 * bed.bigBlanket.scale.z
+            bed.smallBlanket.position.z += 90 * bed.smallBlanket.scale.z
           }
         }
         else {
