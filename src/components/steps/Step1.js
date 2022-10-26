@@ -59,6 +59,17 @@ const Step1 = (props) => {
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.z /= scaleAdjust
           bed.outsidePillows.scale.z /= scaleAdjust
+          bed.smallBlanket.scale.z /= scaleAdjust
+          bed.bigBlanket.scale.z /= scaleAdjust
+          console.log(bed.bigBlanket.position, bed.smallBlanket.position)
+          if (scaleAdjust < 1) {
+            bed.bigBlanket.position.z -= 100 / scaleAdjust
+            bed.smallBlanket.position.z -= 100 / scaleAdjust
+          }
+          else if (scaleAdjust > 1) {
+            bed.bigBlanket.position.z += 100 / scaleAdjust
+            bed.smallBlanket.position.z += 100 / scaleAdjust
+          }
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -108,11 +119,11 @@ const Step1 = (props) => {
                 <div className="slider">
                  <Slider
                     aria-label="Custom marks"
-                    defaultValue={200}
+                    defaultValue={220}
                     getAriaValueText={changeCurrentLength}
-                    step={20}
-                    min={180}
-                    max={240}
+                    step={10}
+                    min={200}
+                    max={250}
                     valueLabelDisplay="auto"
                     // marks={true}
                   />
