@@ -26,6 +26,8 @@ export const CanvasElement = (props) => {
 	    // called when the resource is loaded
     	function ( gltf ) {
         gltf.scene.children[0].position.set(0, 0, 0)
+        gltf.scene.scale.set(0.001, 0.001, 0.001)
+        gltf.scene.children[0].scale.set(1, 1, 1)
     		scene.add( gltf.scene );
       },
 	    // called while loading is progressing
