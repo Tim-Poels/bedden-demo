@@ -27,13 +27,13 @@ const Step1 = (props) => {
 
       if (scene) {
         if (scene.children[4]) {
-          let bed = scene.children[4].children[0]
+          let bed = getBed(scene.children[4].children[0])
           // Creating a scale factor that scales it so that the bed is the exact right size
           let scaleAdjust = newWidth / currentWidth
-          bed.scale.x *= scaleAdjust 
+          bed.full.scale.x *= scaleAdjust 
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
-          bed.children[1].scale.x /= scaleAdjust
-          bed.children[7].scale.x /= scaleAdjust
+          bed.middlePillow.scale.x /= scaleAdjust
+          bed.outsidePillows.scale.x /= scaleAdjust
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -52,13 +52,13 @@ const Step1 = (props) => {
       console.log("width changed to " + currentLength)
       if (scene) {
         if (scene.children[4]) {
-          let bed = scene.children[4].children[0]
+          let bed = getBed(scene.children[4].children[0])
           // Creating a scale factor that scales it so that the bed is the exact right size
           let scaleAdjust = newLength / currentLength
-          bed.scale.z *= scaleAdjust 
+          bed.full.scale.z *= scaleAdjust 
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
-          bed.children[1].scale.z /= scaleAdjust
-          bed.children[7].scale.z /= scaleAdjust
+          bed.middlePillow.scale.z /= scaleAdjust
+          bed.outsidePillows.scale.z /= scaleAdjust
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -123,6 +123,61 @@ const Step1 = (props) => {
       </div>
     </div>
   )
+}
+
+export const getBed = (bed) => {
+  let obj = {
+    full: bed
+  } 
+  for (let c of bed.children) {
+    if (c.name === "Bed_01012") {
+      obj.frame = c
+    }
+  }
+
+  for (let c of bed.children) {
+    if (c.name === "Bed_01013") {
+      obj.legs = c
+    }
+  }
+
+  for (let c of bed.children) {
+    if (c.name === "Bed_01014") {
+      obj.middlePillow = c
+    }
+  }
+
+  for (let c of bed.children) {
+    if (c.name === "Bed_01015") {
+      obj.matres = c
+    }
+  }
+
+  for (let c of bed.children) {
+    if (c.name === "Bed_01016") {
+      obj.bigBlanket = c
+    }
+  }
+
+  for (let c of bed.children) {
+    if (c.name === "Bed_01017") {
+      obj.smallBlanket = c
+    }
+  }
+
+  for (let c of bed.children) {
+    if (c.name === "Bed_01018") {
+      obj.outsidePillows = c
+    }
+  }
+
+  for (let c of bed.children) {
+    if (c.name === "Bed_01019") {
+      obj.longPillow = c
+    }
+  }
+
+  return obj
 }
 
 export default Step1;
