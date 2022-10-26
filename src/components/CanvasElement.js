@@ -1,10 +1,8 @@
-import React, { Suspense, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import * as THREE from "three"
-import { useGLTF } from "@react-three/drei"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-import { findAllInRenderedTree } from "react-dom/test-utils";
 export var scene;
 export const CanvasElement = (props) => {
   useEffect(() => {
@@ -24,7 +22,7 @@ export const CanvasElement = (props) => {
     // Load a glTF resource
     loader.load(
     	// resource URL
-	    'bed-test.glb',
+	    'bed-no-cubboard.glb',
 	    // called when the resource is loaded
     	function ( gltf ) {
         gltf.scene.children[0].position.set(0, 0, 0)
@@ -104,13 +102,13 @@ export const CanvasElement = (props) => {
     renderer.setClearColor( 0xffffff, 0);
 
     // Animate
-    const clock = new THREE.Clock()
-    let previousTime = 0
+    // const clock = new THREE.Clock()
+    // let previousTime = 0
 
     const tick = () => {
-      const elapsedTime = clock.getElapsedTime()
-      const deltaTime = elapsedTime - previousTime
-      previousTime = elapsedTime
+      // const elapsedTime = clock.getElapsedTime()
+      // const deltaTime = elapsedTime - previousTime
+      // previousTime = elapsedTime
 
       // Update controls
       controls.update()
