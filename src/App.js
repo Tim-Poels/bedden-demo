@@ -4,7 +4,7 @@ import Body from "./components/Body.js";
 
 const App = () => {
   // setState to change to another step
-  const [useSteps, setSteps] = useState(1);
+  const [useSteps, setSteps] = useState(null);
   return (
     <div className="App">
       <Header step={useSteps} />

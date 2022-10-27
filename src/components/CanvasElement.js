@@ -67,13 +67,13 @@ export const CanvasElement = React.memo((props) => {
 
     // Sizes
     const sizes = {
-      width: window.innerWidth / 3 * 2,
+      width: window.innerWidth - 450,
       height: window.innerHeight / 10 * 9
     }
 
     window.addEventListener('resize', () => {
       // Update sizes
-      sizes.width = window.innerWidth / 3 * 2 
+      sizes.width = window.innerWidth -450
       sizes.height = window.innerHeight / 10 * 9
 
       // Update camera

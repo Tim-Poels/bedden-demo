@@ -6,5 +6,5 @@
 
 .CanvasElement {
   height: 100% !important;
-  width: 67% !important;
+  width: calc(100% - 450px) !important;
 }
