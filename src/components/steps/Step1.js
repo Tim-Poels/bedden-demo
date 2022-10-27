@@ -71,12 +71,12 @@ const Step1 = (props) => {
 
           //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
           if (scaleAdjust < 1) {
-            bed.bigBlanket.position.z -= 90 * bed.bigBlanket.scale.z
-            bed.smallBlanket.position.z -= 90 * bed.smallBlanket.scale.z
+            bed.bigBlanket.position.z -= 90
+            bed.smallBlanket.position.z -= 90
           }
           else if (scaleAdjust > 1) {
-            bed.bigBlanket.position.z += 90 * bed.bigBlanket.scale.z
-            bed.smallBlanket.position.z += 90 * bed.smallBlanket.scale.z
+            bed.bigBlanket.position.z += 90
+            bed.smallBlanket.position.z += 90
           }
         }
         else {
@@ -138,6 +138,12 @@ const Step1 = (props) => {
                 </div>
               </div>
           </div>
+        </div>
+        <div className="next-previous-step">
+          <button className="previous-button greyed-out-button"> previous </button>
+          <button className="next-button" onClick={() => {
+            props.setSteps(2)
+          }}>NEXT</button>
         </div>
       </div>
     </div>

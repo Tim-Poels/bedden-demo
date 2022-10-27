@@ -3,8 +3,12 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
+
+// Exporting the scene so that it can be accessed from any component (it will remain undefined un till the scene(not the bed model) is loaded)
 export var scene;
-export const CanvasElement = (props) => {
+
+// React.memo() makes it so that the component will not rerender, so when a state is changed (for example the steps state) this component will not rerender meaning we don't have to wait for the model to reload
+export const CanvasElement = React.memo((props) => {
   useEffect(() => {
     // Canvas
     const canvas = document.querySelector('.CanvasElement')
@@ -134,4 +138,4 @@ export const CanvasElement = (props) => {
     <canvas className="CanvasElement">
     </canvas>
   );
-}
+});
