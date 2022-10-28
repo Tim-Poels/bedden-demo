@@ -1,7 +1,25 @@
-// import { scene } from "../CanvasElement.js";
-import testTexture from "../../assets/pexels-engin-akyurt-1487809.jpg"
+import { scene } from "../CanvasElement.js";
+import textures from "./Backboard-textures"
+import { getBed } from "./Step1.js";
+import * as THREE from "three"
 
 const Step2 = (props) => {
+  let checkboxes = [];
+  for (let texture of textures) {
+    checkboxes.push(
+      <div className="checkbox" id={texture.Id} key={texture.Name} onClick={() => {
+        let bed = getBed(scene)
+        console.log(bed.onlyFrame)
+
+        let material = new THREE.MeshStandardMaterial({ color: 0xff00ff})
+        bed.onlyFrame.material = material
+      }}>
+        <img className="checkbox-img"  alt="error loading img" src={texture.Img}></img>
+        <div className="checkbox-checker"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="body-steps">
       <div className="step-header">
@@ -10,45 +28,14 @@ const Step2 = (props) => {
           <p className="number">2</p>
         </div>
         <p className="title">
-          HEADBOARD
+          STOF
         </p>
       </div>
       <div className="step-container">
         <div className="selection-container">
           <p className="title">TEXTURE</p>
           <div className="checkbox-container">
-            <div className="checkbox active">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
-            <div className="checkbox">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
-            <div className="checkbox">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
-            <div className="checkbox">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
-            <div className="checkbox">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
-            <div className="checkbox">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
-            <div className="checkbox">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
-            <div className="checkbox">
-              <img className="checkbox-img" src={testTexture} alt="error loading img"></img>
-              <div className="checkbox-checker"></div>
-            </div>
+            {checkboxes}
           </div>
         </div>
         <div className="next-previous-step">
