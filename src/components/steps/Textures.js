@@ -22,9 +22,13 @@ import yellowNormal from "../../assets/textures/Normal/yellow-test.jpg"
 import yellowRoughness from "../../assets/textures/Roughness/yellow-test.jpg"
 import yellowImg from "../../assets/textures/Color/yellow-test.jpg"
 
+import { scene } from "../CanvasElement.js"
+import * as THREE from "three"
+import { getBed } from "./Step1.js"
+
 const textures = [
   {
-    Id: "white-test",
+    Id: 0,
     Name: "white-test",
     Img: whiteImg, 
     AO: whiteAO,
@@ -33,7 +37,7 @@ const textures = [
     Roughness: whiteRoughness,
   },
   {
-    Id: "red-test",
+    Id: 1,
     Name: "red-test",
     Img: redImg, 
     AO: redAO,
@@ -42,7 +46,7 @@ const textures = [
     Roughness: redRoughness,
   },
   {
-    Id: "orange-test",
+    Id: 2,
     Name: "orange-test",
     Img: orangeImg, 
     AO: orangeAO,
@@ -51,7 +55,7 @@ const textures = [
     Roughness: orangeRoughness,
   },
   {
-    Id: "yellow-test",
+    Id: 3,
     Name: "yellow-test",
     Img: yellowImg, 
     AO: yellowAO,
@@ -59,6 +63,40 @@ const textures = [
     Normal: yellowNormal,
     Roughness: yellowRoughness,
   },
-]
+];
+
+export const addTexture = () => {
+  const textureLoader = new THREE.TextureLoader()
+
+  let bed = getBed(scene)
+  let color = textureLoader.load( textures[1].Color );
+  color.wrapS = THREE.RepeatWrapping;
+  color.wrapT = THREE.RepeatWrapping;
+  // roughness.repeat.set( 2, 2 );
+        
+  let normal = textureLoader.load( textures[1].Normal );
+  normal.wrapS = THREE.RepeatWrapping;
+  normal.wrapT = THREE.RepeatWrapping;
+  // normal.repeat.set( 2, 2 );
+
+  let roughness = textureLoader.load( textures[1].Roughness );
+  roughness.wrapS = THREE.RepeatWrapping;
+  roughness.wrapT = THREE.RepeatWrapping;
+  // roughness.repeat.set( 2, 2 );
+
+  let AO = textureLoader.load( textures[1].AO );
+  AO.wrapS = THREE.RepeatWrapping;
+  AO.wrapT = THREE.RepeatWrapping;
+  // roughness.repeat.set( 2, 2 );
+
+  let material = new THREE.MeshStandardMaterial({ 
+    map: color,
+    normalMap: normal,
+    roughnessMap: roughness,
+    aoMap: AO,
+  })
+
+  bed.onlyFrame.material = material
+}
 
 export default textures

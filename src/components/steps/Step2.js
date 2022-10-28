@@ -2,19 +2,30 @@ import { scene } from "../CanvasElement.js";
 import textures from "./Textures.js"
 import { getBed } from "./Step1.js";
 import * as THREE from "three"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const Step2 = (props) => {
   useEffect(() => {
-    // console.log(scene)
+    let checks = document.getElementsByClassName("checkbox")
+    for (let elem of checks) {
+      if (elem.classList.contains("active")) {
+        elem.classList.remove("active");
+      }
+    }
+    console.log(useTexture)
+    let active = document.getElementById(useTexture)
+
+    active.classList.add("active")
   })
+
+  const [useTexture, setTexture] = useState("red-test")
 
   const textureLoader = new THREE.TextureLoader()
 
   let checkboxes = [];
   for (let texture of textures) {
     checkboxes.push(
-      <div className="checkbox" id={texture.Id} key={texture.Name} onClick={() => {
+      <div className="checkbox" id={texture.Name} key={texture.Name} onClick={() => {
         let bed = getBed(scene)
 
         let color = textureLoader.load( texture.Color );
@@ -46,6 +57,8 @@ const Step2 = (props) => {
         })
         bed.onlyFrame.material.dispose()
         bed.onlyFrame.material = material
+
+        setTexture(texture.Name)
       }}>
         <img className="checkbox-img"  alt="error loading img" src={texture.Img}></img>
         <div className="checkbox-checker"></div>
