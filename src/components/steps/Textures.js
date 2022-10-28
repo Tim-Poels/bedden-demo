@@ -2,7 +2,7 @@ import whiteAO from "../../assets/textures/AO/white.jpg"
 import whiteColor from "../../assets/textures/Color/white.jpg"
 import whiteNormal from "../../assets/textures/Normal/white.jpg"
 import whiteRoughness from "../../assets/textures/Roughness/white.jpg"
-import whiteImg from "../../assets/pexels-engin-akyurt-1487809.jpg"
+import whiteImg from "../../assets/textures/Color/white.jpg"
 
 const textures = [
   {
@@ -15,8 +15,8 @@ const textures = [
     Roughness: whiteRoughness,
   },
   {
-    Id: "white",
-    Name: "white",
+    Id: "red",
+    Name: "red",
     Img: whiteImg, 
     AO: whiteAO,
     Color: whiteColor,
@@ -24,8 +24,8 @@ const textures = [
     Roughness: whiteRoughness,
   },
   {
-    Id: "white",
-    Name: "white",
+    Id: "cyan",
+    Name: "cyan",
     Img: whiteImg, 
     AO: whiteAO,
     Color: whiteColor,
@@ -33,8 +33,8 @@ const textures = [
     Roughness: whiteRoughness,
   },
   {
-    Id: "white",
-    Name: "white",
+    Id: "lime",
+    Name: "lime",
     Img: whiteImg, 
     AO: whiteAO,
     Color: whiteColor,

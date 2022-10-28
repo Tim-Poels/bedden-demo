@@ -1,17 +1,50 @@
 import { scene } from "../CanvasElement.js";
-import textures from "./Backboard-textures"
+import textures from "./Textures.js"
 import { getBed } from "./Step1.js";
 import * as THREE from "three"
+import { useEffect } from "react"
 
 const Step2 = (props) => {
+  useEffect(() => {
+    // console.log(scene)
+  })
+
+  const textureLoader = new THREE.TextureLoader()
+
   let checkboxes = [];
   for (let texture of textures) {
     checkboxes.push(
       <div className="checkbox" id={texture.Id} key={texture.Name} onClick={() => {
         let bed = getBed(scene)
-        console.log(bed.onlyFrame)
 
-        let material = new THREE.MeshStandardMaterial({ color: 0xff00ff})
+        let color = textureLoader.load( texture.Color );
+        color.wrapS = THREE.RepeatWrapping;
+        color.wrapT = THREE.RepeatWrapping;
+        // roughness.repeat.set( 2, 2 );
+        
+        let normal = textureLoader.load( texture.Normal );
+        normal.wrapS = THREE.RepeatWrapping;
+        normal.wrapT = THREE.RepeatWrapping;
+        // normal.repeat.set( 2, 2 );
+
+        let roughness = textureLoader.load( texture.Roughness );
+        roughness.wrapS = THREE.RepeatWrapping;
+        roughness.wrapT = THREE.RepeatWrapping;
+        // roughness.repeat.set( 2, 2 );
+
+        let AO = textureLoader.load( texture.AO );
+        AO.wrapS = THREE.RepeatWrapping;
+        AO.wrapT = THREE.RepeatWrapping;
+        // roughness.repeat.set( 2, 2 );
+
+        let material = new THREE.MeshStandardMaterial({ 
+          map: color,
+          normalMap: normal,
+          roughnessMap: roughness,
+          aoMap: AO,
+          
+        })
+        bed.onlyFrame.material.dispose()
         bed.onlyFrame.material = material
       }}>
         <img className="checkbox-img"  alt="error loading img" src={texture.Img}></img>
