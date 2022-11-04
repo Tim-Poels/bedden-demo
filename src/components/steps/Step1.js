@@ -28,7 +28,7 @@ const Step1 = (props) => {
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names
-          let bed = getBed(scene.children[4].children[0])
+          let bed = getBed(scene)
 
           // Creating a scale factor that scales it so that the bed is the exact right size
           let scaleAdjust = newWidth / currentWidth
@@ -56,7 +56,7 @@ const Step1 = (props) => {
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names
-          let bed = getBed(scene.children[4].children[0])
+          let bed = getBed(scene)
           
           // Creating a scale factor that scales it so that the bed is the exact right size
           let scaleAdjust = newLength / currentLength
@@ -150,13 +150,20 @@ const Step1 = (props) => {
   )
 }
 
-export const getBed = (bed) => {
+export const getBed = (scene) => {
+  let bed = scene.children[4].children[0]
   let obj = {
     full: bed
   } 
+
   for (let c of bed.children) {
     if (c.name === "Bed_01012") {
       obj.frame = c
+      for (let d of obj.frame.children) {
+        if (d.name === "Mesh010") {
+          obj.onlyFrame = d
+        }
+      }
     }
   }
 

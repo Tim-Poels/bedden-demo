@@ -141,6 +141,7 @@
 
 .active.checkbox > .checkbox-checker {
   background-color: orange;
+  border: 0;
 }
 
 /* rgb(255, 192, 110); */

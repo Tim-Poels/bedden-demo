@@ -3,6 +3,7 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
+import { addTexture } from "./steps/Textures.js"
 
 // Exporting the scene so that it can be accessed from any component (it will remain undefined un till the scene(not the bed model) is loaded)
 export var scene;
@@ -33,6 +34,7 @@ export const CanvasElement = React.memo((props) => {
         gltf.scene.scale.set(0.001, 0.001, 0.001)
         gltf.scene.children[0].scale.set(1, 1, 1)
     		scene.add( gltf.scene );
+        addTexture();
       },
 	    // called while loading is progressing
 	    function ( xhr ) {
@@ -58,10 +60,10 @@ export const CanvasElement = React.memo((props) => {
     scene.add(floor)
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
     scene.add(ambientLight)
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, .8)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, .6)
     directionalLight.position.set(5, 5, 5)
     scene.add(directionalLight)
 
