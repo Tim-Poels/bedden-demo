@@ -97,6 +97,8 @@ export const addTexture = () => {
   })
 
   bed.onlyFrame.material = material
+
+  sessionStorage.setItem("texture", textures[1].Name);
 }
 
 export default textures

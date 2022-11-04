@@ -15,11 +15,22 @@ const Step2 = (props) => {
     console.log(useTexture)
     let active = document.getElementById(useTexture)
 
+    sessionStorage.setItem("texture", useTexture);
+    console.log(textureName)
+
     active.classList.add("active")
   })
 
-  const [useTexture, setTexture] = useState("red-test")
-
+  let textureName    
+  if (sessionStorage.getItem("texture")) {
+    textureName = sessionStorage.getItem("texture")
+  }
+  else {
+    textureName = "red-test"
+  }
+  console.log(textureName)
+  const [useTexture, setTexture] = useState(textureName)
+  
   const textureLoader = new THREE.TextureLoader()
 
   let checkboxes = [];
