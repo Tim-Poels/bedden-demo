@@ -7,16 +7,6 @@ const Step1 = (props) => {
     // console.log(scene)
   })
 
-  // scene.children[4].children[0] is the full bed group
-  // bed.children[0] are the legs
-  // bed.children[1] is the middle pillow
-  // bed.children[2] is the top blanket 
-  // bed.children[3] is the long underlying pillow
-  // bed.children[4] is the bed frame group
-  // bed.children[5] is the matrres
-  // bed.children[6] is the bottom blanket
-  // bed.children[7] are the 2 headpillows
-
   let currentWidth;
   let currentLength;
 
