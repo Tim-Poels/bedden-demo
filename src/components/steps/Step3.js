@@ -19,10 +19,12 @@ import darkSteel from "../../assets/legs/colors/covers/darkSteel.jpg"
 
 import { Material } from "three";
 
-let legURLs
+let legURLs = [];
+  let colorMaterials = []
 
 const Step3 = (props) => {
   useEffect(() => {
+    //check the right checkboxes
     let checks = document.getElementsByClassName("checkbox")
     for (let elem of checks) {
       if (elem.classList.contains("active")) {
@@ -32,9 +34,15 @@ const Step3 = (props) => {
     let active = document.getElementById(useCurrentLeg)
 
     active.classList.add("active")
+
+    let activeTexture = document.getElementById(useCurrentLegTexture)
+
+    activeTexture.classList.add("active")
   })
 
   const [useCurrentLeg, setCurrentLeg] = useState(sessionStorage.getItem("currentLeg"))
+
+  const [useCurrentLegTexture, setCurrentLegTexture] = useState(sessionStorage.getItem("currentLegTexture"))
 
   //the arrray all elements get renedered in
   let legs = [];
@@ -81,8 +89,6 @@ const Step3 = (props) => {
 
   let colorCovers = [blackSteel, whiteSteel, lightSteel, darkSteel]
 
-  let colorMaterials = []
-
   colorMaterials.push(
     new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 })
   )
@@ -101,12 +107,15 @@ const Step3 = (props) => {
 
   for (let i = 0; i < colorCovers.length; i++) {
     colors.push(
-      <div className="checkbox" id={i} key={i}>
+      <div className="checkbox" id={"legTexture" + i} key={i}>
         <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]} onClick={() => {
           let leg = findOtherLegs()
           leg.traverse((mesh) => {
             if (mesh.isMesh) mesh.material = colorMaterials[i]
           })
+          sessionStorage.setItem("currentLegTexture", "legTexture" + i)
+          setCurrentLegTexture("legTexture" + i)
+          
         }}></img>
         <div className="checkbox-checker"></div>
       </div>
@@ -216,6 +225,13 @@ const loadLegs = (url) => {
       scene.add(newLegs)
 
       newLegs.name = url
+
+      let texture = sessionStorage.getItem("currentLegTexture")
+      let num = texture.replace(/\D/g, '');
+    
+      newLegs.traverse((mesh) => {
+        if (mesh.isMesh) mesh.material = colorMaterials[num]
+      })
 
       return newLegs
     },
