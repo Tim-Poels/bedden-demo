@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { getBed } from "./Step1.js";
 import * as THREE from 'three'
+
 import pootS from "../../assets/legs/STANDAARD.JPG"
 import pootA from "../../assets/legs/101_POOT_A.JPG"
 import pootB from "../../assets/legs/101_POOT_B_ALU.JPG"
@@ -11,22 +12,28 @@ import pootC from "../../assets/legs/101_POOT_CDZ.JPG"
 import pootD from "../../assets/legs/101_POOT_DZ.JPG"
 import pootE from "../../assets/legs/101_POOT_EO_ZWART.JPG"
 
+import blackSteel from "../../assets/legs/colors/covers/blackSteel.jpg"
+import whiteSteel from "../../assets/legs/colors/covers/whiteSteel.jpg"
+import lightSteel from "../../assets/legs/colors/covers/lightSteel.jpg"
+import darkSteel from "../../assets/legs/colors/covers/darkSteel.jpg"
+
+import { Material } from "three";
+
 let legURLs
 
 const Step3 = (props) => {
   useEffect(() => {
-  let checks = document.getElementsByClassName("checkbox")
-  for (let elem of checks) {
-    if (elem.classList.contains("active")) {
-      elem.classList.remove("active");
+    let checks = document.getElementsByClassName("checkbox")
+    for (let elem of checks) {
+      if (elem.classList.contains("active")) {
+        elem.classList.remove("active");
+      }
     }
-  }
-  let active = document.getElementById(useCurrentLeg)
+    let active = document.getElementById(useCurrentLeg)
 
-  active.classList.add("active")
+    active.classList.add("active")
   })
 
-  console.log(sessionStorage.getItem("currentLeg"))
   const [useCurrentLeg, setCurrentLeg] = useState(sessionStorage.getItem("currentLeg"))
 
   //the arrray all elements get renedered in
@@ -70,6 +77,42 @@ const Step3 = (props) => {
     )
   }
 
+  let colors = []
+
+  let colorCovers = [blackSteel, whiteSteel, lightSteel, darkSteel]
+
+  let colorMaterials = []
+
+  colorMaterials.push(
+    new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 })
+  )
+
+  colorMaterials.push(
+    new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 })
+  )
+
+  colorMaterials.push(
+    new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 })
+  )
+
+  colorMaterials.push(
+    new THREE.MeshStandardMaterial({ color: "gray", roughness: 0.2 })
+  )
+
+  for (let i = 0; i < colorCovers.length; i++) {
+    colors.push(
+      <div className="checkbox" id={i} key={i}>
+        <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]} onClick={() => {
+          let leg = findOtherLegs()
+          leg.traverse((mesh) => {
+            if (mesh.isMesh) mesh.material = colorMaterials[i]
+          })
+        }}></img>
+        <div className="checkbox-checker"></div>
+      </div>
+    )
+  }
+
 
   return (
     <div className="body-steps">
@@ -87,6 +130,11 @@ const Step3 = (props) => {
           <p className="title">LEGS</p>
           <div className="checkbox-container">
             {legs}
+          </div>
+
+          <p className="title">COLOR</p>
+          <div className="checkbox-container">
+            {colors}
           </div>
         </div>
         <div className="next-previous-step">
