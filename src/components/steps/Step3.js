@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { scene } from "../CanvasElement.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
@@ -15,16 +15,29 @@ let legURLs
 
 const Step3 = (props) => {
   useEffect(() => {
+  let checks = document.getElementsByClassName("checkbox")
+  for (let elem of checks) {
+    if (elem.classList.contains("active")) {
+      elem.classList.remove("active");
+    }
+  }
+  let active = document.getElementById(useCurrentLeg)
 
+  active.classList.add("active")
   })
+
+  console.log(sessionStorage.getItem("currentLeg"))
+  const [useCurrentLeg, setCurrentLeg] = useState(sessionStorage.getItem("currentLeg"))
 
   //the arrray all elements get renedered in
   let legs = [];
 
   let pictures = [pootS, pootA, pootB, pootC, pootD, pootE]
 
+  legURLs = ["bed-leg", "legs/101_POOT_A.glb", "legs/101_POOT_B_ALU.glb", "legs/101_POOT_CDZ.glb", "legs/101_POOT_DZ.glb", "legs/101_POOT_EO_ZWART.glb"]
+  
   legs.push(
-    <div className="checkbox active" id={"leg0"} key={0}>
+    <div className="checkbox active" id={legURLs[0]} key={0}>
       <img className="checkbox-img"  alt="error loading img" src={pootS}></img>
       <div className="checkbox-checker"></div>
     </div>
@@ -32,11 +45,10 @@ const Step3 = (props) => {
 
   //all the lecations of the glb models of the legs
 
-  legURLs = [null, "legs/101_POOT_A.glb", "legs/101_POOT_B_ALU.glb", "legs/101_POOT_CDZ.glb", "legs/101_POOT_DZ.glb", "legs/101_POOT_EO_ZWART.glb"]
 
   for (let i = 1; i < legURLs.length ; i++) {
     legs.push(
-      <div className="checkbox" id={"leg" + i} key={i}>
+      <div className="checkbox" id={legURLs[i]} key={i}>
         <img className="checkbox-img"  alt="error loading img" src={pictures[i]} onClick={() => {
 
           console.log("the legs are active output: " + !(sessionStorage.getItem("currentLeg") === legURLs[i]))
@@ -50,6 +62,7 @@ const Step3 = (props) => {
 
             //store in the session storage which leg is the new one
             sessionStorage.setItem("currentLeg", legURLs[i])
+            setCurrentLeg(legURLs[i])
           }
         }} ></img>
         <div className="checkbox-checker"></div>
