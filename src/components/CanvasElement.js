@@ -35,6 +35,8 @@ export const CanvasElement = React.memo((props) => {
         gltf.scene.children[0].scale.set(1, 1, 1)
     		scene.add( gltf.scene );
         addTexture();
+        sessionStorage.setItem("currentLeg", "bed-leg")
+        sessionStorage.setItem("currentLegTexture", "legTexture0")
       },
 	    // called while loading is progressing
 	    function ( xhr ) {
@@ -49,7 +51,7 @@ export const CanvasElement = React.memo((props) => {
     // Floor
     const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 10),
-    new THREE.MeshStandardMaterial({
+    new THREE.MeshBasicMaterial({
         color: '#ffffff',
         metalness: 0,
         roughness: 0.5
