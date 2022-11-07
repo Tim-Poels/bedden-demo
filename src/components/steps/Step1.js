@@ -158,7 +158,7 @@ export const getBed = (scene) => {
   }
 
   var legs = scene.getObjectByName("Bed_01013");
-  obj.legs = legs
+  if (legs) obj.legs = legs
 
   for (let c of bed.children) {
     if (c.name === "Bed_01014") {

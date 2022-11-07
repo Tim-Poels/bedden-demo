@@ -4,8 +4,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { getBed } from "./Step1.js";
 import * as THREE from 'three'
-
-import placeholder from "../../assets/textures/Color/red-test.jpg"
+import pootS from "../../assets/legs/STANDAARD.JPG"
+import pootA from "../../assets/legs/101_POOT_A.JPG"
+import pootB from "../../assets/legs/101_POOT_B_ALU.JPG"
+import pootC from "../../assets/legs/101_POOT_CDZ.JPG"
+import pootD from "../../assets/legs/101_POOT_DZ.JPG"
+import pootE from "../../assets/legs/101_POOT_EO_ZWART.JPG"
 
 let legURLs
 
@@ -17,9 +21,11 @@ const Step3 = (props) => {
   //the arrray all elements get renedered in
   let legs = [];
 
+  let pictures = [pootS, pootA, pootB, pootC, pootD, pootE]
+
   legs.push(
     <div className="checkbox active" id={"leg0"} key={0}>
-      <img className="checkbox-img"  alt="error loading img" src={placeholder}></img>
+      <img className="checkbox-img"  alt="error loading img" src={pootS}></img>
       <div className="checkbox-checker"></div>
     </div>
   )
@@ -31,7 +37,7 @@ const Step3 = (props) => {
   for (let i = 1; i < legURLs.length ; i++) {
     legs.push(
       <div className="checkbox" id={"leg" + i} key={i}>
-        <img className="checkbox-img"  alt="error loading img" src={placeholder} onClick={() => {
+        <img className="checkbox-img"  alt="error loading img" src={pictures[i]} onClick={() => {
 
           console.log("the legs are active output: " + !(sessionStorage.getItem("currentLeg") === legURLs[i]))
           //check if the leg is already the active one
