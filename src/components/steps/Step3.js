@@ -7,20 +7,45 @@ import * as THREE from 'three'
 
 import placeholder from "../../assets/textures/Color/red-test.jpg"
 
+let legURLs
+
 const Step3 = (props) => {
   useEffect(() => {
-    let bed = getBed(scene)
-    bed.legs.removeFromParent();
-    scene.remove(bed.legs)
-    let newLegs = loadLegs("legs/101_POOT_A.glb")
+
   })
 
-  let legs = []
+  //the arrray all elements get renedered in
+  let legs = [];
 
-  for (let i = 0; i < 12; i++) {
+  legs.push(
+    <div className="checkbox active" id={"leg0"} key={0}>
+      <img className="checkbox-img"  alt="error loading img" src={placeholder}></img>
+      <div className="checkbox-checker"></div>
+    </div>
+  )
+
+  //all the lecations of the glb models of the legs
+
+  legURLs = [null, "legs/101_POOT_A.glb", "legs/101_POOT_B_ALU.glb", "legs/101_POOT_CDZ.glb", "legs/101_POOT_DZ.glb", "legs/101_POOT_EO_ZWART.glb"]
+
+  for (let i = 1; i < legURLs.length ; i++) {
     legs.push(
       <div className="checkbox" id={"leg" + i} key={i}>
-        <img className="checkbox-img"  alt="error loading img" src={placeholder}></img>
+        <img className="checkbox-img"  alt="error loading img" src={placeholder} onClick={() => {
+
+          console.log("the legs are active output: " + !(sessionStorage.getItem("currentLeg") === legURLs[i]))
+          //check if the leg is already the active one
+          if (!(sessionStorage.getItem("currentLeg") === legURLs[i])) {
+            //remove the other leg
+            removeAllLegs();
+
+            //load the new selected leg
+            loadLegs(legURLs[i])
+
+            //store in the session storage which leg is the new one
+            sessionStorage.setItem("currentLeg", legURLs[i])
+          }
+        }} ></img>
         <div className="checkbox-checker"></div>
       </div>
     )
@@ -54,6 +79,29 @@ const Step3 = (props) => {
   )
 }
 
+const removeAllLegs = () => {
+  let otherLeg = findOtherLegs()
+  if (otherLeg) {
+    otherLeg.removeFromParent();
+    scene.remove(otherLeg)
+  }
+  else {
+    console.log("There where no legs in the scene")
+  }
+}
+
+const findOtherLegs = () => {
+  for (let i = 1; i < legURLs.length; i++) {
+    let legs = scene.getObjectByName( legURLs[i] );
+    if (legs) return legs
+  }
+
+  let bed = getBed(scene)
+  if (bed.legs) return bed.legs
+
+  console.log("ERROR: No legs found")
+}
+
 const loadLegs = (url) => {
   const loader = new GLTFLoader();
 
@@ -67,14 +115,30 @@ const loadLegs = (url) => {
 	  url,
 	  // called when the resource is loaded
   	function ( gltf ) {
-      gltf.scene.scale.set(0.001, 0.002, 0.001)
+      gltf.scene.scale.set(0.001, 0.0018, 0.001)
       let leg2 = gltf.scene.clone()
       let leg3 = gltf.scene.clone()
       let leg4 = gltf.scene.clone()
-      gltf.scene.position.set(.91, .2, 1.02)
-      leg2.position.set(-.91, .2, 1.02)
-      leg3.position.set(.91, .2, -1.02)
-      leg4.position.set(-.91, .2, -1.02)
+
+      gltf.scene.position.set(.91, .18, 1.02)
+      leg2.position.set(-.91, .18, 1.02)
+      leg3.position.set(.91, .18, -1.02)
+      leg4.position.set(-.91, .18, -1.02)
+      
+      leg3.rotation.y = Math.PI
+      leg4.rotation.y = Math.PI
+
+      if (url === "legs/101_POOT_DZ.glb") {
+        leg2.rotation.y = Math.PI
+        leg3.rotation.y = 0
+      }
+      else if (url === "legs/101_POOT_EO_ZWART.glb") {
+        gltf.scene.rotation.y = Math.PI / 2
+        leg2.rotation.y = Math.PI / 2
+        leg3.rotation.y = Math.PI / 2 * 3
+        leg4.rotation.y = Math.PI / 2 * 3
+      }
+
       
       let newLegs = new THREE.Group()
       newLegs.add(gltf.scene)
@@ -83,6 +147,9 @@ const loadLegs = (url) => {
       newLegs.add(leg4)
 
       scene.add(newLegs)
+
+      newLegs.name = url
+
       return newLegs
     },
 	  // called while loading is progressing

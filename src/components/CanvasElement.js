@@ -35,6 +35,7 @@ export const CanvasElement = React.memo((props) => {
         gltf.scene.children[0].scale.set(1, 1, 1)
     		scene.add( gltf.scene );
         addTexture();
+        sessionStorage.setItem("currentLeg", "bed-leg")
       },
 	    // called while loading is progressing
 	    function ( xhr ) {
