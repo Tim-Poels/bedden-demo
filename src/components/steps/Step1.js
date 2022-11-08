@@ -1,23 +1,23 @@
 import { useEffect } from "react";
 import { scene } from "../CanvasElement.js";
-import Slider from '@mui/material/Slider';
-import { getBottomNavigationActionUtilityClass } from "@mui/material";
 
 const Step1 = (props) => {
   useEffect(() => {
-    // console.log(scene)
+    let widthSlider = document.getElementById("widthSlider")
+    widthSlider.value = currentWidth
+
+    let lengthSlider = document.getElementById("lengthSlider")
+    lengthSlider.value = currentLength
   })
 
   let currentWidth
   
   let sessionWidth = sessionStorage.getItem("currentWidth")
   if (sessionWidth) {
-    currentWidth = sessionWidth
-    console.log(currentWidth)
+    currentWidth = parseInt(sessionWidth, 10)
   }
   else {
     currentWidth = 200
-    console.log("currentWidth initialised as 200")
     sessionStorage.setItem("currentWidth", 200)
   }
 
@@ -25,18 +25,17 @@ const Step1 = (props) => {
   
   let sessionLength = sessionStorage.getItem("currentLength")
   if (sessionLength) {
-    currentLength = sessionLength
-    console.log(currentLength)
+    currentLength = parseInt(sessionLength, 10)
   }
   else {
     currentLength = 220
-    console.log("currentLength initialised as 220")
     sessionStorage.setItem("currentLength", 220)
 
   }
 
 
   const changeCurrentWidth = (newWidth) => {
+    console.log(newWidth)
     if (!newWidth ) {
       console.log("width is undefined so no change")
       return null
@@ -135,16 +134,11 @@ const Step1 = (props) => {
             <div className="single-slider">
               <div className="name">Width</div>
               <div className="slider">
-                <Slider
-                  aria-label="Custom marks"
-                  defaultValue={parseInt(currentWidth, 10)}
-                  getAriaValueText={changeCurrentWidth}
-                  step={20}
-                  min={180}
-                  max={240}
-                  valueLabelDisplay="auto"
-                  // marks={true}
-                />
+                <input type="range" id="widthSlider" min="160" max="240" step="20" className="bedAreaSlider" onChange={(x) => {
+                  changeCurrentWidth(x.target.value)
+                  document.getElementById("showWidth").innerText = x.target.value
+                  }}></input>
+                <p id="showWidth">{currentWidth}</p>
               </div>
             </div>
           </div>
@@ -152,16 +146,11 @@ const Step1 = (props) => {
               <div className="single-slider">
                 <div className="name">Length</div>
                 <div className="slider">
-                 <Slider
-                    aria-label="Custom marks"
-                    defaultValue={parseInt(currentLength, 10)}
-                    getAriaValueText={changeCurrentLength}
-                    step={10}
-                    min={200}
-                    max={250}
-                    valueLabelDisplay="auto"
-                    // marks={true}
-                  />
+                 <input type="range" min="180" max="240" step="10" id="lengthSlider" className="bedAreaSlider" onChange={(x) => {
+                  changeCurrentLength(x.target.value)
+                  document.getElementById("showLength").innerText = x.target.value
+                  }}></input>
+                <p id="showLength">{currentLength}</p>
                 </div>
               </div>
           </div>

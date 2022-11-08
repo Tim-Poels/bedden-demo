@@ -8,13 +8,13 @@
 .body-steps > .step-header {
   width: 100%;
   background-color: white;
-  border-bottom: 1px solid rgb(255, 192, 110);
+  border-bottom: 1px solid #6DC8CF;
   display: flex;
   padding-bottom: 20px;
 }
 
 .step-header > .orange-box {
-  background-color: rgb(255, 192, 110);
+  background-color: #FFC45F;
   height: 55px;
   width: 55px;
   display: flex;
@@ -43,7 +43,8 @@
   font-weight: 200;
   font-size: 36px;
   letter-spacing: 5px;
-  color: rgb(255, 192, 110); 
+  color: #FF8A25;
+  margin-top: 5px; 
 }
 
 .body-steps > .step-container {
@@ -55,7 +56,7 @@
 
 .selection-container {
   padding: 5px 0px 15px 0px;
-  /* border-bottom: 1px solid rgb(255, 192, 110); */
+  /* border-bottom: 1px solid #FFC45F; */
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -70,6 +71,7 @@
   font-size: 28px;
   letter-spacing: 3px;
   padding-bottom: 20px;
+  color: #0078FF;
 }
 
 .next-previous-step {
@@ -79,11 +81,11 @@
   justify-content: space-around;
   margin-top: 10px;
   padding: 20px 0px;
-  border-top: 1px solid rgb(255, 192, 110);
+  border-top: 1px solid #6DC8CF;
 }
 
 .previous-button {
-  color: rgb(25, 118, 210);
+  color: #0078FF;
   font-size: 20px;
   height: 50px;
   width: 150px;
@@ -99,7 +101,7 @@
   font-size: 24px;
   height: 50px;
   width: 150px;
-  background-color: rgb(255, 192, 110);
+  background-color: #FFC45F;
   border: 0;
   border-radius: 2px;
 }
@@ -131,7 +133,11 @@
 }
 
 .active.checkbox {
-  border: 4px solid orange;
+  border: 4px solid #FF8A25;
+}
+
+.checkbox:hover {
+  border: 4px solid #0078FF;
 }
 
 .checkbox-checker {
@@ -139,14 +145,121 @@
   border: 1px solid grey;
   height: 25px;
   width: 25px;
-  transform: translate(89px, -118px);
+  transform: translate(90px, -120px);
   z-index: 2;
   border-radius: 50%;
 }
 
 .active.checkbox > .checkbox-checker {
-  background-color: orange;
+  background-color: #FF8A25;
+  transform: translate(87px, -116px);
   border: 0;
 }
 
-/* rgb(255, 192, 110); */
+.checkbox:hover > .checkbox-checker {
+  transform: translate(87px, -116px);
+}
+
+.single-slider > .name {
+  /* color: #6DC8CF */
+}
+
+/* #FFC45F; */
+
+/* SLIDERS */
+
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 90%;
+  align-items: center;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #6DC8CF;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 8px;
+  border-radius: 3px;
+  background: #0078FF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #6DC8CF;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #6DC8CF;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 8px;
+  border-radius: 3px;
+  background: #0078FF;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 39px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #6DC8CF;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #6DC8CF;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 8px;
+  border-radius: 3px;
+  background: #0078FF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #6DC8CF;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #6DC8CF;
+}
