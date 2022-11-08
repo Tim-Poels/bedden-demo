@@ -8,7 +8,7 @@
 .body-steps > .step-header {
   width: 100%;
   background-color: white;
-  border-bottom: 1px solid #6DC8CF;
+  border-bottom: 1px solid #A8DADC;
   display: flex;
   padding-bottom: 20px;
 }
@@ -81,7 +81,7 @@
   justify-content: space-around;
   margin-top: 10px;
   padding: 20px 0px;
-  border-top: 1px solid #6DC8CF;
+  border-top: 1px solid #A8DADC;
 }
 
 .previous-button {
@@ -93,6 +93,7 @@
   border: 0;
   text-decoration: underline;
   font-style: italic;
+  cursor: pointer;
 }
 
 .next-button {
@@ -104,10 +105,12 @@
   background-color: #FFC45F;
   border: 0;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .greyed-out-button {
   color: lightgrey;
+  cursor: default;
 }
 
 .checkbox-container {
@@ -123,6 +126,7 @@
   border: 1px solid lightgrey;
   margin: 2px 3px 2px 0px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .checkbox-img {
@@ -161,7 +165,7 @@
 }
 
 .single-slider > .name {
-  /* color: #6DC8CF */
+  /* color: #A8DADC */
 }
 
 /* #FFC45F; */
@@ -188,7 +192,7 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 8px;
   cursor: pointer;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #6DC8CF;
+  background: #A8DADC;
   border-radius: 25px;
   border: 0px solid #000101;
 }
@@ -204,7 +208,7 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -6px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #6DC8CF;
+  background: #A8DADC;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
@@ -212,7 +216,7 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #6DC8CF;
+  background: #A8DADC;
   border-radius: 25px;
   border: 0px solid #000101;
 }
@@ -237,13 +241,13 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: #6DC8CF;
+  background: #A8DADC;
   border: 0px solid #000101;
   border-radius: 50px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 }
 input[type=range]::-ms-fill-upper {
-  background: #6DC8CF;
+  background: #A8DADC;
   border: 0px solid #000101;
   border-radius: 50px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
@@ -258,8 +262,8 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #6DC8CF;
+  background: #A8DADC;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #6DC8CF;
+  background: #A8DADC;
 }
