@@ -69,6 +69,12 @@ export const addTexture = () => {
   const textureLoader = new THREE.TextureLoader()
 
   let bed = getBed(scene)
+
+  if(!bed) {
+    console.log("ERROR: no bed found at addTexture()")
+    return null
+  }
+
   let color = textureLoader.load( textures[1].Color );
   color.wrapS = THREE.RepeatWrapping;
   color.wrapT = THREE.RepeatWrapping;
