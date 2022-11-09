@@ -3,34 +3,34 @@
   width: 100vw;
   display: flex;
   align-items: center;
-  background-color: rgb(255, 192, 110);
+  background-color: #FFC45F;
 }
 
 .configurator-step {
   height: 8vh;
-  width: fit-content;
+  width: calc((100% - 150px) / 5);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 15px;
-  border-radius: 10% 70% 70% 10% / 10% 100% 100% 20px ;
+  border-radius: 10px 50% 50% 10px / 10px 100% 100% 10px ;
   background-color: white;
   margin-left: 25px;
   border: 3px solid white;
 }
 
 .configurator-step.active {
-  background-color: rgb(255, 192, 110);
+  border: 3px solid #0078FF;
 }
 
 .configurator-step-text {
   height: min-content;
   font-size: 5vh;
-  color: rgb(255, 145, 0);
+  color: #FF8A25;
   font-weight: bold;
   letter-spacing: 3px;
 }
 
 .configurator-step.active > .configurator-step-text {
-  color: white;
+  color: #0078FF;
 }
