@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { getBed } from "./Step1.js";
 import * as THREE from 'three'
+import priceCalculator from "./priceCalculator.js"
 
 import pootS from "../../assets/legs/STANDAARD.JPG"
 import pootA from "../../assets/legs/101_POOT_A.JPG"
@@ -38,6 +39,8 @@ const Step3 = (props) => {
     let activeTexture = document.getElementById(useCurrentLegTexture)
 
     activeTexture.classList.add("active")
+
+    document.getElementById("price").innerText = priceCalculator()
   })
 
   const [useCurrentLeg, setCurrentLeg] = useState(sessionStorage.getItem("currentLeg"))
@@ -77,6 +80,9 @@ const Step3 = (props) => {
 
             //store in the session storage which leg is the new one
             sessionStorage.setItem("currentLeg", legURLs[i])
+            
+            document.getElementById("price").innerText = priceCalculator()
+
             setCurrentLeg(legURLs[i])
           }
         }} ></img>
@@ -90,19 +96,19 @@ const Step3 = (props) => {
   let colorCovers = [blackSteel, whiteSteel, lightSteel, darkSteel]
 
   colorMaterials.push(
-    new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 })
+    new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 }) // id: "legTexture0"
   )
 
   colorMaterials.push(
-    new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 })
+    new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture1"
   )
 
   colorMaterials.push(
-    new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 })
+    new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture2"
   )
 
   colorMaterials.push(
-    new THREE.MeshStandardMaterial({ color: "gray", roughness: 0.2 })
+    new THREE.MeshStandardMaterial({ color: "gray", roughness: 0.2 }) // id: "legTexture3"
   )
 
   for (let i = 0; i < colorCovers.length; i++) {
@@ -114,6 +120,9 @@ const Step3 = (props) => {
             if (mesh.isMesh) mesh.material = colorMaterials[i]
           })
           sessionStorage.setItem("currentLegTexture", "legTexture" + i)
+
+          document.getElementById("price").innerText = priceCalculator()
+
           setCurrentLegTexture("legTexture" + i)
           
         }}></img>
@@ -148,6 +157,7 @@ const Step3 = (props) => {
         </div>
         <div className="next-previous-step">
           <button className="previous-button" onClick={() => {props.setSteps(2)}}> previous </button>
+          <p id="price">placeholder</p>
           <button className="next-button" onClick={() => {props.setSteps(4)}}>NEXT</button>
         </div>
       </div>

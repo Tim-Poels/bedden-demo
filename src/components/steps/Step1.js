@@ -4,7 +4,7 @@ import Slider from '@mui/material/Slider';
 
 const Step1 = (props) => {
   useEffect(() => {
-    // console.log(scene)
+    // (scene)
   })
 
   let currentWidth;
@@ -131,6 +131,7 @@ const Step1 = (props) => {
         </div>
         <div className="next-previous-step">
           <button className="previous-button greyed-out-button"> previous </button>
+          <p id="price">placeholder</p>
           <button className="next-button" onClick={() => {
             props.setSteps(2)
           }}>NEXT</button>
