@@ -17,8 +17,6 @@ import whiteSteel from "../../assets/legs/colors/covers/whiteSteel.jpg"
 import lightSteel from "../../assets/legs/colors/covers/lightSteel.jpg"
 import darkSteel from "../../assets/legs/colors/covers/darkSteel.jpg"
 
-import { Material } from "three";
-
 let legURLs = [];
   let colorMaterials = []
 
@@ -65,7 +63,6 @@ const Step3 = (props) => {
     legs.push(
       <div className="checkbox" id={legURLs[i]} key={i}>
         <img className="checkbox-img"  alt="error loading img" src={pictures[i]} onClick={() => {
-
           console.log("the legs are active output: " + !(sessionStorage.getItem("currentLeg") === legURLs[i]))
           //check if the leg is already the active one
           if (!(sessionStorage.getItem("currentLeg") === legURLs[i])) {
