@@ -7,7 +7,7 @@ const priceCalculator = () => {
   
   let bill = {}
 
-  let price = 99;
+  let price = 99.99;
 
   let framePrice = 0;
 

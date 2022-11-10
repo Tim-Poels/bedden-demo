@@ -13,7 +13,44 @@ const Step4 = (props) => {
         </p>
       </div>
       <div className="checkout-tab">
-
+        <div className="bill">
+          <div className="items-display">
+            <div className="flex">
+              <p>Standard Fee:</p>
+              <p>99.99€</p>
+            </div>
+            <div className="section">
+              <div className="flex">
+                <p>Frame:</p>
+                <p>+ 450.00€</p>
+              </div>
+              <div className="sub section flex">
+                <p>Fabric:</p>
+                <p>+ 50.00€</p>
+              </div>
+              <div className="sub section flex">
+                <p>Backboard:</p>
+                <p>+ 50.00€</p>
+              </div>
+            </div>
+            <div className="section">
+              <div className="flex">
+                <p>Legs:</p>
+                <p>+ 50.00€</p>
+              </div>
+              <div className="sub section flex">
+                  <p>Leg Material:</p>
+                  <p>+ 10.00€</p>
+              </div>
+            </div>
+          </div>
+          <div className="total">
+            <div className="flex">
+              <p>TOTAL</p>
+              <p>699.00€</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="step-container">
         <div className="next-previous-step">
