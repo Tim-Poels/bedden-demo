@@ -60,13 +60,8 @@ const Step1 = (props) => {
 
           // Changing the legs
           let legs = findOtherLegs()
-          if (legs.name == "Bed_01013") {
-            console.log("standard leg")
-          }
-          else {
-            for (let child of legs.children) {
-              child.position.x *= scaleAdjust
-            }
+          for (let child of legs.children) {
+            child.position.x *= scaleAdjust
           }
           
           currentWidth = newWidth
@@ -118,13 +113,8 @@ const Step1 = (props) => {
 
           // Changing the legs
           let legs = findOtherLegs()
-          if (legs.name == "Bed_01013") {
-            console.log("standard leg")
-          }
-          else {
-            for (let child of legs.children) {
-              child.position.z *= scaleAdjust
-            }
+          for (let child of legs.children) {
+            child.position.z *= scaleAdjust
           }
           
           currentLength = newLength
