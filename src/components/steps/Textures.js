@@ -68,6 +68,35 @@ const textures = [
 export const addTexture = () => {
   const textureLoader = new THREE.TextureLoader()
 
+  let index = 1 // Index of the texture that you want loaded when there is no texture in the sessionStorage
+
+  let sessionTexture = sessionStorage.getItem("texture");
+
+  if (sessionTexture) {
+    switch (sessionTexture) {
+      case "white-test":
+        index = 0;
+        break;
+      case "red-test":
+        index = 1;
+        break;
+      case "orange-test":
+        index = 2;
+        break;
+      case "yellow-test":
+        index = 3;
+        break;
+      default: 
+        index = 1;
+        sessionStorage.setItem("texture", "red-test");
+        break;
+    }
+  }
+  else {
+    sessionStorage.setItem("texture", "red-test");
+  }
+
+
   let bed = getBed(scene)
 
   if(!bed) {
@@ -75,22 +104,22 @@ export const addTexture = () => {
     return null
   }
 
-  let color = textureLoader.load( textures[1].Color );
+  let color = textureLoader.load( textures[index].Color );
   color.wrapS = THREE.RepeatWrapping;
   color.wrapT = THREE.RepeatWrapping;
   // roughness.repeat.set( 2, 2 );
         
-  let normal = textureLoader.load( textures[1].Normal );
+  let normal = textureLoader.load( textures[index].Normal );
   normal.wrapS = THREE.RepeatWrapping;
   normal.wrapT = THREE.RepeatWrapping;
   // normal.repeat.set( 2, 2 );
 
-  let roughness = textureLoader.load( textures[1].Roughness );
+  let roughness = textureLoader.load( textures[index].Roughness );
   roughness.wrapS = THREE.RepeatWrapping;
   roughness.wrapT = THREE.RepeatWrapping;
   // roughness.repeat.set( 2, 2 );
 
-  let AO = textureLoader.load( textures[1].AO );
+  let AO = textureLoader.load( textures[index].AO );
   AO.wrapS = THREE.RepeatWrapping;
   AO.wrapT = THREE.RepeatWrapping;
   // roughness.repeat.set( 2, 2 );
@@ -103,8 +132,6 @@ export const addTexture = () => {
   })
 
   bed.onlyFrame.material = material
-
-  sessionStorage.setItem("texture", textures[1].Name);
 }
 
 export default textures
