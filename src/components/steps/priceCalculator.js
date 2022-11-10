@@ -31,9 +31,6 @@ const priceCalculator = () => {
   }
 
   switch (leg) {
-    case "bed-leg":
-      price += 50
-      break;
     case "legs/101_POOT_A.glb":
       price += 60
       break;
@@ -50,7 +47,7 @@ const priceCalculator = () => {
       price += 100
       break;
     default:
-      price += 50
+      price += 60
   }
 
   switch (legTexture) {

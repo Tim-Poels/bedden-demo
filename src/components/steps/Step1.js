@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { scene } from "../CanvasElement.js";
 import priceCalculator from "./priceCalculator.js";
+import { findOtherLegs } from "./Step3.js";
 
 const Step1 = (props) => {
   useEffect(() => {
@@ -42,6 +43,8 @@ const Step1 = (props) => {
       return null
     }
     if (currentWidth !== newWidth) {
+      sessionStorage.setItem("currentWidth", newWidth)
+      document.getElementById("price").innerText = priceCalculator();
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names
@@ -54,11 +57,14 @@ const Step1 = (props) => {
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.x /= scaleAdjust
           bed.outsidePillows.scale.x /= scaleAdjust
+
+          // Changing the legs
+          let legs = findOtherLegs()
+          for (let child of legs.children) {
+            child.position.x *= scaleAdjust
+          }
           
           currentWidth = newWidth
-
-          sessionStorage.setItem("currentWidth", currentWidth)
-          document.getElementById("price").innerText = priceCalculator();
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -77,6 +83,8 @@ const Step1 = (props) => {
       return null
     }
     if (currentLength !== newLength) {
+      sessionStorage.setItem("currentLength", newLength)
+      document.getElementById("price").innerText = priceCalculator();
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names
@@ -95,18 +103,21 @@ const Step1 = (props) => {
           
           //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
           if (scaleAdjust < 1) {
-            bed.bigBlanket.position.z -= 90
-            bed.smallBlanket.position.z -= 90
+            bed.bigBlanket.position.z -= 45
+            bed.smallBlanket.position.z -= 45
           }
           else if (scaleAdjust > 1) {
-            bed.bigBlanket.position.z += 90
-            bed.smallBlanket.position.z += 90
+            bed.bigBlanket.position.z += 45
+            bed.smallBlanket.position.z += 45
+          }
+
+          // Changing the legs
+          let legs = findOtherLegs()
+          for (let child of legs.children) {
+            child.position.z *= scaleAdjust
           }
           
           currentLength = newLength
-
-          sessionStorage.setItem("currentLength", currentLength)
-          document.getElementById("price").innerText = priceCalculator();
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -137,7 +148,7 @@ const Step1 = (props) => {
             <div className="single-slider">
               <div className="name">Width</div>
               <div className="slider">
-                <input type="range" id="widthSlider" min="180" max="240" step="20" className="bedAreaSlider" onChange={(x) => {
+                <input type="range" id="widthSlider" min="180" max="240" step="10" className="bedAreaSlider" onChange={(x) => {
                   changeCurrentWidth(x.target.value)
                   document.getElementById("showWidth").innerText = x.target.value
                   }}></input>
@@ -149,7 +160,7 @@ const Step1 = (props) => {
               <div className="single-slider">
                 <div className="name">Length</div>
                 <div className="slider">
-                 <input type="range" min="180" max="240" step="10" id="lengthSlider" className="bedAreaSlider" onChange={(x) => {
+                 <input type="range" min="200" max="240" step="5" id="lengthSlider" className="bedAreaSlider" onChange={(x) => {
                   changeCurrentLength(x.target.value)
                   document.getElementById("showLength").innerText = x.target.value
                   }}></input>

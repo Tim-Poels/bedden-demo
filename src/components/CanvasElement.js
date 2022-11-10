@@ -4,6 +4,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { addTexture } from "./steps/Textures.js"
+import { loadLegs } from "./steps/Step3.js"
+import { getBed } from "./steps/Step1.js"
 
 // Exporting the scene so that it can be accessed from any component (it will remain undefined un till the scene(not the bed model) is loaded)
 export var scene;
@@ -31,12 +33,41 @@ export const CanvasElement = React.memo((props) => {
 	    // called when the resource is loaded
     	function ( gltf ) {
         gltf.scene.children[0].position.set(0, 0, 0)
+
         gltf.scene.scale.set(0.001, 0.001, 0.001)
         gltf.scene.children[0].scale.set(1, 1, 1)
+
+        let currentWidth = parseInt(sessionStorage.getItem("currentWidth"), 10)
+        let currentLength = parseInt(sessionStorage.getItem("currentLength"), 10)
+
+        gltf.scene.children[0].scale.x = currentWidth / 200
+        gltf.scene.children[0].scale.z = currentLength / 220
+
+        
+
     		scene.add( gltf.scene );
+        
         addTexture();
-        sessionStorage.setItem("currentLeg", "bed-leg")
-        sessionStorage.setItem("currentLegTexture", "legTexture0")
+        
+        let oldLegs = getBed(scene).legs;
+        oldLegs.removeFromParent();
+        scene.remove(oldLegs)
+        
+        let sessionLegTexture = sessionStorage.getItem("currentLeg")
+        if (!sessionLegTexture) {
+          sessionStorage.setItem("currentLegTexture", "legTexture0")
+        }
+
+        let sessionLeg = sessionStorage.getItem("currentLeg")
+
+        if (sessionLeg) {
+          loadLegs(sessionLeg)
+        }
+        else {
+          loadLegs("legs/101_POOT_A.glb")
+          sessionStorage.setItem("currentLeg", "legs/101_POOT_A.glb")
+        }
+        
       },
 	    // called while loading is progressing
 	    function ( xhr ) {
