@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { scene } from "../CanvasElement.js";
 import priceCalculator from "./priceCalculator.js";
+import { findOtherLegs } from "./Step3.js";
 
 const Step1 = (props) => {
   useEffect(() => {
@@ -56,6 +57,17 @@ const Step1 = (props) => {
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.x /= scaleAdjust
           bed.outsidePillows.scale.x /= scaleAdjust
+
+          // Changing the legs
+          let legs = findOtherLegs()
+          if (legs.name == "Bed_01013") {
+            console.log("standard leg")
+          }
+          else {
+            for (let child of legs.children) {
+              child.position.x *= scaleAdjust
+            }
+          }
           
           currentWidth = newWidth
         }
@@ -102,6 +114,17 @@ const Step1 = (props) => {
           else if (scaleAdjust > 1) {
             bed.bigBlanket.position.z += 90
             bed.smallBlanket.position.z += 90
+          }
+
+          // Changing the legs
+          let legs = findOtherLegs()
+          if (legs.name == "Bed_01013") {
+            console.log("standard leg")
+          }
+          else {
+            for (let child of legs.children) {
+              child.position.z *= scaleAdjust
+            }
           }
           
           currentLength = newLength

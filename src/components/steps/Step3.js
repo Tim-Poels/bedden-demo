@@ -173,7 +173,7 @@ const removeAllLegs = () => {
   }
 }
 
-const findOtherLegs = () => {
+export const findOtherLegs = () => {
   for (let i = 1; i < legURLs.length; i++) {
     let legs = scene.getObjectByName( legURLs[i] );
     if (legs) return legs
@@ -228,6 +228,12 @@ const loadLegs = (url) => {
       newLegs.add(leg2)
       newLegs.add(leg3)
       newLegs.add(leg4)
+
+      let currentWidth = parseInt(sessionStorage.getItem("currentWidth"), 10)
+      let currentLength = parseInt(sessionStorage.getItem("currentLength"), 10)
+
+      newLegs.scale.x = currentWidth / 200
+      newLegs.scale.z = currentLength / 220
 
       scene.add(newLegs)
 
