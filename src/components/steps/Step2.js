@@ -18,7 +18,7 @@ const Step2 = (props) => {
 
     sessionStorage.setItem("texture", useTexture);
 
-    document.getElementById("price").innerText = priceCalculator ()
+    document.getElementById("price").innerText = priceCalculator()
 
     active.classList.add("active")
   })
