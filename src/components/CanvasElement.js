@@ -131,12 +131,6 @@ export const CanvasElement = React.memo((props) => {
     }
 
     tick()
-
-    return () => {
-      while (scene.children.length > 5) {
-        scene.remove(scene.children[5])
-      }
-    }
   })
   return (
     <canvas className="CanvasElement">

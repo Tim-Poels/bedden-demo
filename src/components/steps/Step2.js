@@ -3,6 +3,7 @@ import textures from "./Textures.js"
 import { getBed } from "./Step1.js";
 import * as THREE from "three"
 import { useEffect, useState } from "react"
+import priceCalculator from "./priceCalculator.js"
 
 const Step2 = (props) => {
   useEffect(() => {
@@ -16,7 +17,8 @@ const Step2 = (props) => {
     let active = document.getElementById(useTexture)
 
     sessionStorage.setItem("texture", useTexture);
-    console.log(textureName)
+
+    document.getElementById("price").innerText = priceCalculator ()
 
     active.classList.add("active")
   })
@@ -97,6 +99,7 @@ const Step2 = (props) => {
         </div>
         <div className="next-previous-step">
           <button className="previous-button" onClick={() => {props.setSteps(1)}}> previous </button>
+          <p id="price">placeholder</p>
           <button className="next-button" onClick={() => {props.setSteps(3)}}>NEXT</button>
         </div>
       </div>
