@@ -78,20 +78,23 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 10px;
   padding: 20px 0px;
   border-top: 1px solid #A8DADC;
 }
 
+#price {
+  font-size: 28px;
+}
+
 .previous-button {
-  color: #0078FF;
-  font-size: 20px;
+  background-color: #FFC45F;
+  color: white;
+  font-size: 24px;
   height: 50px;
   width: 125px;
-  background-color: transparent;
   border: 0;
-  text-decoration: underline;
   font-style: italic;
   cursor: pointer;
 }
@@ -102,14 +105,14 @@
   font-size: 24px;
   height: 50px;
   width: 125px;
-  background-color: #FFC45F;
+  background-color: #0078FF;
   border: 0;
   border-radius: 2px;
   cursor: pointer;
 }
 
 .greyed-out-button {
-  color: lightgrey;
+  background-color: #ffc45f63;
   cursor: default;
 }
 
