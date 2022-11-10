@@ -52,11 +52,22 @@ export const CanvasElement = React.memo((props) => {
         let oldLegs = getBed(scene).legs;
         oldLegs.removeFromParent();
         scene.remove(oldLegs)
+        
+        let sessionLegTexture = sessionStorage.getItem("currentLeg")
+        if (!sessionLegTexture) {
+          sessionStorage.setItem("currentLegTexture", "legTexture0")
+        }
 
-        loadLegs("legs/101_POOT_A.glb")
+        let sessionLeg = sessionStorage.getItem("currentLeg")
 
-        sessionStorage.setItem("currentLeg", "legs/101_POOT_A.glb")
-        sessionStorage.setItem("currentLegTexture", "legTexture0")
+        if (sessionLeg) {
+          loadLegs(sessionLeg)
+        }
+        else {
+          loadLegs("legs/101_POOT_A.glb")
+          sessionStorage.setItem("currentLeg", "legs/101_POOT_A.glb")
+        }
+        
       },
 	    // called while loading is progressing
 	    function ( xhr ) {
