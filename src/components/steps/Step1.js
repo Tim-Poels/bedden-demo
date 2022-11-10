@@ -103,12 +103,12 @@ const Step1 = (props) => {
           
           //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
           if (scaleAdjust < 1) {
-            bed.bigBlanket.position.z -= 90
-            bed.smallBlanket.position.z -= 90
+            bed.bigBlanket.position.z -= 45
+            bed.smallBlanket.position.z -= 45
           }
           else if (scaleAdjust > 1) {
-            bed.bigBlanket.position.z += 90
-            bed.smallBlanket.position.z += 90
+            bed.bigBlanket.position.z += 45
+            bed.smallBlanket.position.z += 45
           }
 
           // Changing the legs
@@ -148,7 +148,7 @@ const Step1 = (props) => {
             <div className="single-slider">
               <div className="name">Width</div>
               <div className="slider">
-                <input type="range" id="widthSlider" min="180" max="240" step="20" className="bedAreaSlider" onChange={(x) => {
+                <input type="range" id="widthSlider" min="180" max="240" step="10" className="bedAreaSlider" onChange={(x) => {
                   changeCurrentWidth(x.target.value)
                   document.getElementById("showWidth").innerText = x.target.value
                   }}></input>
@@ -160,7 +160,7 @@ const Step1 = (props) => {
               <div className="single-slider">
                 <div className="name">Length</div>
                 <div className="slider">
-                 <input type="range" min="180" max="240" step="10" id="lengthSlider" className="bedAreaSlider" onChange={(x) => {
+                 <input type="range" min="200" max="240" step="5" id="lengthSlider" className="bedAreaSlider" onChange={(x) => {
                   changeCurrentLength(x.target.value)
                   document.getElementById("showLength").innerText = x.target.value
                   }}></input>
