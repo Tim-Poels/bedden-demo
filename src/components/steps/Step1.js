@@ -42,6 +42,8 @@ const Step1 = (props) => {
       return null
     }
     if (currentWidth !== newWidth) {
+      sessionStorage.setItem("currentWidth", newWidth)
+      document.getElementById("price").innerText = priceCalculator();
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names
@@ -56,9 +58,6 @@ const Step1 = (props) => {
           bed.outsidePillows.scale.x /= scaleAdjust
           
           currentWidth = newWidth
-
-          sessionStorage.setItem("currentWidth", currentWidth)
-          document.getElementById("price").innerText = priceCalculator();
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -77,6 +76,8 @@ const Step1 = (props) => {
       return null
     }
     if (currentLength !== newLength) {
+      sessionStorage.setItem("currentLength", newLength)
+      document.getElementById("price").innerText = priceCalculator();
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names
@@ -104,9 +105,6 @@ const Step1 = (props) => {
           }
           
           currentLength = newLength
-
-          sessionStorage.setItem("currentLength", currentLength)
-          document.getElementById("price").innerText = priceCalculator();
         }
         else {
           console.log("error: bed hasn't loaded yet")
