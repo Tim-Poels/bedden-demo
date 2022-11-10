@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { scene } from "../CanvasElement.js";
+import priceCalculator from "./priceCalculator.js";
 
 const Step1 = (props) => {
   useEffect(() => {
@@ -8,14 +9,15 @@ const Step1 = (props) => {
 
     let lengthSlider = document.getElementById("lengthSlider")
     lengthSlider.value = currentLength
+
+    document.getElementById("price").innerText = priceCalculator();
   })
 
   let currentWidth
   
   let sessionWidth = sessionStorage.getItem("currentWidth")
   if (sessionWidth) {
-    currentWidth = parseInt(sessionWidth, 10)
-  }
+    currentWidth = parseInt(sessionWidth, 10)  }
   else {
     currentWidth = 200
     sessionStorage.setItem("currentWidth", 200)
@@ -30,7 +32,6 @@ const Step1 = (props) => {
   else {
     currentLength = 220
     sessionStorage.setItem("currentLength", 220)
-
   }
 
 
@@ -57,6 +58,7 @@ const Step1 = (props) => {
           currentWidth = newWidth
 
           sessionStorage.setItem("currentWidth", currentWidth)
+          document.getElementById("price").innerText = priceCalculator();
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -104,6 +106,7 @@ const Step1 = (props) => {
           currentLength = newLength
 
           sessionStorage.setItem("currentLength", currentLength)
+          document.getElementById("price").innerText = priceCalculator();
         }
         else {
           console.log("error: bed hasn't loaded yet")
@@ -134,7 +137,7 @@ const Step1 = (props) => {
             <div className="single-slider">
               <div className="name">Width</div>
               <div className="slider">
-                <input type="range" id="widthSlider" min="160" max="240" step="20" className="bedAreaSlider" onChange={(x) => {
+                <input type="range" id="widthSlider" min="180" max="240" step="20" className="bedAreaSlider" onChange={(x) => {
                   changeCurrentWidth(x.target.value)
                   document.getElementById("showWidth").innerText = x.target.value
                   }}></input>

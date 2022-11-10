@@ -1,6 +1,6 @@
 const priceCalculator = () => {
-  let width = null;
-  let lenght = null;
+  let width = parseInt(sessionStorage.getItem("currentWidth"), 10)
+  let lenght = parseInt(sessionStorage.getItem("currentLength"), 10)
   let texture = sessionStorage.getItem("texture")
   let leg = sessionStorage.getItem("currentLeg")
   let legTexture = sessionStorage.getItem("currentLegTexture")
@@ -69,7 +69,7 @@ const priceCalculator = () => {
       break;
   }
 
-  return price
+  return price + " €"
 }
 
 
