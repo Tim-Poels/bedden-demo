@@ -46,7 +46,33 @@ export const CanvasElement = React.memo((props) => {
         
 
     		scene.add( gltf.scene );
-        
+
+        if (currentWidth !== 200 || currentLength !== 220) {
+          let bed = getBed(scene);
+
+          let widthScaleAdjust = currentWidth / 200
+
+          bed.middlePillow.scale.x /= widthScaleAdjust
+          bed.outsidePillows.scale.x /= widthScaleAdjust
+
+          let lengthScaleAdjust = currentLength / 220
+
+          bed.middlePillow.scale.z /= lengthScaleAdjust
+          bed.outsidePillows.scale.z /= lengthScaleAdjust
+          bed.smallBlanket.scale.z /= lengthScaleAdjust
+          bed.bigBlanket.scale.z /= lengthScaleAdjust
+
+          let amountOfScaleAdjusts = Math.abs(currentLength - 220) / 5
+          if (lengthScaleAdjust < 1) {
+            bed.bigBlanket.position.z -= 45 * amountOfScaleAdjusts
+            bed.smallBlanket.position.z -= 45 * amountOfScaleAdjusts
+          }
+          else if (lengthScaleAdjust > 1) {
+            bed.bigBlanket.position.z += 45 * amountOfScaleAdjusts
+            bed.smallBlanket.position.z += 45 * amountOfScaleAdjusts
+          }
+        }
+
         addTexture();
         
         let oldLegs = getBed(scene).legs;
