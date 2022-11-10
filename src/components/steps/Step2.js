@@ -18,7 +18,7 @@ const Step2 = (props) => {
 
     sessionStorage.setItem("texture", useTexture);
 
-    document.getElementById("price").innerText = priceCalculator()
+    document.getElementById("price").innerText = priceCalculator().total + "€"
 
     active.classList.add("active")
   })
@@ -92,7 +92,7 @@ const Step2 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">TEXTURE</p>
+          <p className="title">FABRIC</p>
           <div className="checkbox-container">
             {checkboxes}
           </div>
