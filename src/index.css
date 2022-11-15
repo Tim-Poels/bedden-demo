@@ -13,5 +13,5 @@ body, #root, .App {
 
 .App {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }

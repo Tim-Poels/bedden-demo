@@ -11,6 +11,7 @@ const Step4 = (props) => {
         </p>
       </div>
       <div className="step-container">
+        <div></div>
         <div className="next-previous-step">
           <button className="previous-button" onClick={() => {props.setSteps(3)}}> previous </button>
           <button className="next-button" onClick={() => {props.setSteps(5)}}>NEXT</button>

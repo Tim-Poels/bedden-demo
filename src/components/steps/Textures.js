@@ -156,17 +156,17 @@ export const addTexture = () => {
   let littleBlanketColorMap = textureLoader.load( littleBlanketColor )
   littleBlanketColorMap.wrapS = THREE.RepeatWrapping;
   littleBlanketColorMap.wrapT = THREE.RepeatWrapping;
-  littleBlanketColorMap.repeat.set(4, 4);
+  littleBlanketColorMap.repeat.set(2, 2);
 
   let littleBlanketRoughnessMap = textureLoader.load( littleBlanketRoughness )
   littleBlanketRoughnessMap.wrapS = THREE.RepeatWrapping;
   littleBlanketRoughnessMap.wrapT = THREE.RepeatWrapping;
-  littleBlanketRoughnessMap.repeat.set(4, 4);
+  littleBlanketRoughnessMap.repeat.set(2, 2);
 
   let littleBlanketNormalMap = textureLoader.load( littleBlanketNormal )
   littleBlanketNormalMap.wrapS = THREE.RepeatWrapping;
   littleBlanketNormalMap.wrapT = THREE.RepeatWrapping;
-  littleBlanketNormalMap.repeat.set(4, 4);
+  littleBlanketNormalMap.repeat.set(2, 2);
 
   let littleBlanketMaterial = new THREE.MeshStandardMaterial({ 
     map: littleBlanketColorMap,

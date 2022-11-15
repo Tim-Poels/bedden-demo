@@ -53,6 +53,7 @@ const Step1 = (props) => {
           // Creating a scale factor that scales it so that the bed is the exact right size
           let scaleAdjust = newWidth / currentWidth
           bed.full.scale.x *= scaleAdjust 
+          bed.floor.scale.x *= scaleAdjust
           
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.x /= scaleAdjust
@@ -94,6 +95,7 @@ const Step1 = (props) => {
           let scaleAdjust = newLength / currentLength
           
           bed.full.scale.z *= scaleAdjust 
+          bed.floor.scale.y *= scaleAdjust 
           
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.z /= scaleAdjust
@@ -104,11 +106,11 @@ const Step1 = (props) => {
           //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
           if (scaleAdjust < 1) {
             bed.bigBlanket.position.z -= 45
-            bed.smallBlanket.position.z -= 45
+            bed.smallBlanket.position.z -= 50
           }
           else if (scaleAdjust > 1) {
             bed.bigBlanket.position.z += 45
-            bed.smallBlanket.position.z += 45
+            bed.smallBlanket.position.z += 50
           }
 
           // Changing the legs
@@ -211,6 +213,9 @@ export const getBed = (scene) => {
 
   var legs = scene.getObjectByName("Bed_01013");
   if (legs) obj.legs = legs
+
+  let floor = scene.getObjectByName("bedFloor");
+  if (floor) obj.floor = floor
 
   for (let c of bed.children) {
     if (c.name === "Bed_01014") {

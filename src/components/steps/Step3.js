@@ -217,6 +217,10 @@ export const loadLegs = (url) => {
       newLegs.add(leg3)
       newLegs.add(leg4)
 
+      newLegs.traverse((object) => {
+        if (object.isMesh) object.castShadow = true
+      })
+
       let currentWidth = parseInt(sessionStorage.getItem("currentWidth"), 10)
       let currentLength = parseInt(sessionStorage.getItem("currentLength"), 10)
 

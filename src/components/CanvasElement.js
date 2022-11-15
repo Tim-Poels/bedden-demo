@@ -43,19 +43,26 @@ export const CanvasElement = React.memo((props) => {
         gltf.scene.children[0].scale.x = currentWidth / 200
         gltf.scene.children[0].scale.z = currentLength / 220
 
-        
+        gltf.scene.traverse((mesh) => {
+          if (mesh.name === "Bed_01012") {
+            mesh.children[0].castShadow = true;
+          }  
+        })
 
     		scene.add( gltf.scene );
+
+        let widthScaleAdjust = 1
+        let lengthScaleAdjust = 1
 
         if (currentWidth !== 200 || currentLength !== 220) {
           let bed = getBed(scene);
 
-          let widthScaleAdjust = currentWidth / 200
+          widthScaleAdjust = currentWidth / 200
 
           bed.middlePillow.scale.x /= widthScaleAdjust
           bed.outsidePillows.scale.x /= widthScaleAdjust
 
-          let lengthScaleAdjust = currentLength / 220
+          lengthScaleAdjust = currentLength / 220
 
           bed.middlePillow.scale.z /= lengthScaleAdjust
           bed.outsidePillows.scale.z /= lengthScaleAdjust
@@ -65,11 +72,11 @@ export const CanvasElement = React.memo((props) => {
           let amountOfScaleAdjusts = Math.abs(currentLength - 220) / 5
           if (lengthScaleAdjust < 1) {
             bed.bigBlanket.position.z -= 45 * amountOfScaleAdjusts
-            bed.smallBlanket.position.z -= 45 * amountOfScaleAdjusts
+            bed.smallBlanket.position.z -= 50 * amountOfScaleAdjusts
           }
           else if (lengthScaleAdjust > 1) {
             bed.bigBlanket.position.z += 45 * amountOfScaleAdjusts
-            bed.smallBlanket.position.z += 45 * amountOfScaleAdjusts
+            bed.smallBlanket.position.z += 50 * amountOfScaleAdjusts
           }
         }
 
@@ -93,6 +100,18 @@ export const CanvasElement = React.memo((props) => {
           loadLegs("legs/101_POOT_A.glb")
           sessionStorage.setItem("currentLeg", "legs/101_POOT_A.glb")
         }
+
+        let bedFloor = new THREE.Mesh(
+          new THREE.BoxGeometry(1.9 * widthScaleAdjust, 2.1 * lengthScaleAdjust, 0.1),
+          new THREE.MeshStandardMaterial({ color: "black" })
+        )
+
+        bedFloor.rotation.x = Math.PI / 2
+        bedFloor.position.y = 0.25
+        bedFloor.castShadow = true
+        bedFloor.name = "bedFloor"
+        
+        scene.add(bedFloor)
         
       },
 	    // called while loading is progressing
@@ -108,7 +127,7 @@ export const CanvasElement = React.memo((props) => {
     // Floor
     const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 10),
-    new THREE.MeshBasicMaterial({
+    new THREE.MeshStandardMaterial({
         color: '#ffffff',
         metalness: 0,
         roughness: 0.5
@@ -116,6 +135,9 @@ export const CanvasElement = React.memo((props) => {
     )
 
     floor.rotation.x = - Math.PI * 0.5
+
+    floor.receiveShadow = true;
+
     scene.add(floor)
 
     // Lights
@@ -126,16 +148,23 @@ export const CanvasElement = React.memo((props) => {
     directionalLight.position.set(5, 5, 5)
     scene.add(directionalLight)
 
+    directionalLight.castShadow = true;
+
+    directionalLight.shadow.mapSize.width = 512; // default
+    directionalLight.shadow.mapSize.height = 512; // default
+    directionalLight.shadow.camera.near = 0.5; // default
+    directionalLight.shadow.camera.far = 500;
+
     // Sizes
     const sizes = {
-      width: window.innerWidth - 450,
-      height: window.innerHeight / 10 * 9
+      width: window.innerWidth - 550,
+      height: window.innerHeight
     }
 
     window.addEventListener('resize', () => {
       // Update sizes
-      sizes.width = window.innerWidth -450
-      sizes.height = window.innerHeight / 10 * 9
+      sizes.width = window.innerWidth -550
+      sizes.height = window.innerHeight
 
       // Update camera
       camera.aspect = sizes.width / sizes.height
@@ -150,12 +179,12 @@ export const CanvasElement = React.memo((props) => {
 
     // Base camera
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-    camera.position.set(-2, 1.5, 2)
+    camera.position.set(-3, 1.75, 2)
     scene.add(camera)
 
     // Controls
     const controls = new OrbitControls(camera, canvas)
-    controls.target.set(0, 0.75, 0)
+    controls.target.set(0, 0, 0)
     controls.enableDamping = true
 
     // Renderer
@@ -167,6 +196,9 @@ export const CanvasElement = React.memo((props) => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
     renderer.setClearColor( 0xffffff, 0);
+
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     // Animate
     // const clock = new THREE.Clock()
