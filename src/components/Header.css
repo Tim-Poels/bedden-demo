@@ -1,36 +1,47 @@
 .Header {
-  height: 10vh;
-  width: 100vw;
+  height: 100vh;
+  width: 100px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  background-color: #FFC45F;
+  background-color: white;
 }
 
 .configurator-step {
-  height: 8vh;
-  width: calc((100% - 150px) / 5);
+  height: calc((100% - 90px) / 5);
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px;
-  border-radius: 10px 50% 50% 10px / 10px 100% 100% 10px ;
+  padding: 0px 0px;
   background-color: white;
-  margin-left: 25px;
-  border: 3px solid white;
+  border-radius: 4px 4px 100% 100% / 4px 4px 50% 50% ;
+  margin-top: 15px;
+  border: 1px solid lightgrey;
 }
 
 .configurator-step.active {
-  border: 3px solid #0078FF;
+  border: 1px solid #0078FF;
+}
+
+.configurator-step.done {
+  border: 1px solid #A8DADC;
 }
 
 .configurator-step-text {
   height: min-content;
-  font-size: 5vh;
-  color: #FF8A25;
-  font-weight: bold;
-  letter-spacing: 3px;
+  font-size: 20px;
+  color: #ffc45f63;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .configurator-step.active > .configurator-step-text {
-  color: #0078FF;
+  color: hsla(212, 100%, 50%, 0.85);
+}
+
+.configurator-step.done > .configurator-step-text {
+  color: #A8DADC;
 }

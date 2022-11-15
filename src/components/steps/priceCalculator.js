@@ -4,69 +4,101 @@ const priceCalculator = () => {
   let texture = sessionStorage.getItem("texture")
   let leg = sessionStorage.getItem("currentLeg")
   let legTexture = sessionStorage.getItem("currentLegTexture")
+  
+  let bill = {}
 
-  let price = 99;
+  let price = 149.99;
 
-  if (width) price += width
-  else price += 200
+  let framePrice = 0;
 
-  if (lenght) price += lenght
-  else price += 220
+  if (width) framePrice += width
+  else framePrice += 200
+
+  if (lenght) framePrice += lenght
+  else framePrice += 220
+
+  bill.frame = framePrice / 2;
+  
+  price += framePrice / 2;
+
+  bill.matres = (framePrice - 20) / 2;
+
+  price += (framePrice - 20) / 2;
+
+  let texturePrice;
 
   switch (texture) {
     case "white-test":
-      price += 50
+      texturePrice = 50
       break;
     case "red-test":
-      price += 70
+      texturePrice = 70
       break;
     case "yellow-test":
-      price += 60
+      texturePrice = 60
       break;
     case "orange-test":
-      price += 80
+      texturePrice = 80
       break;
     default:
-      price += 50
+      texturePrice = 50
   }
+
+  bill.fabric = texturePrice
+  price += texturePrice
+
+  let legPrice;
 
   switch (leg) {
     case "legs/101_POOT_A.glb":
-      price += 60
+      legPrice = 10
       break;
     case "legs/101_POOT_B_ALU.glb":
-      price += 70
+      legPrice = 20
       break;
     case "legs/101_POOT_CDZ.glb":
-      price += 60
+      legPrice = 30
       break;
     case "legs/101_POOT_DZ.glb":
-      price += 120
+      legPrice = 20
       break;
     case "legs/101_POOT_EO_ZWART.glb":
-      price += 100
+      legPrice = 30
       break;
     default:
-      price += 60
+      legPrice = 10
   }
+
+  bill.leg = legPrice
+  price += legPrice
+
+  let legMaterialPrice;
 
   switch (legTexture) {
     case "legTexture0":
-      break; // price + 0
+      legMaterialPrice = 50
+      break;
     case "legTexture1":
-      price += 10
+      legMaterialPrice = 60
       break;
     case "legTexture2":
-      price += 10
+      legMaterialPrice = 50
       break;
     case "legTexture3":
-      price += 20
+      legMaterialPrice = 70
       break;
     default:
+      legMaterialPrice = 50
       break;
   }
 
-  return price + " €"
+  bill.legMaterial = legMaterialPrice
+  price += legMaterialPrice
+
+
+  bill.total = price
+
+  return bill
 }
 
 

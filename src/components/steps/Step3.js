@@ -36,7 +36,7 @@ const Step3 = (props) => {
 
     activeTexture.classList.add("active")
 
-    document.getElementById("price").innerText = priceCalculator()
+    document.getElementById("price").innerText = priceCalculator().total + "€"
   })
 
   const [useCurrentLeg, setCurrentLeg] = useState(sessionStorage.getItem("currentLeg"))
@@ -65,7 +65,7 @@ const Step3 = (props) => {
             //store in the session storage which leg is the new one
             sessionStorage.setItem("currentLeg", legURLs[i])
             
-            document.getElementById("price").innerText = priceCalculator()
+            document.getElementById("price").innerText = priceCalculator().total + "€"
 
             setCurrentLeg(legURLs[i])
           }
@@ -110,7 +110,7 @@ const Step3 = (props) => {
           })
           sessionStorage.setItem("currentLegTexture", "legTexture" + i)
 
-          document.getElementById("price").innerText = priceCalculator()
+          document.getElementById("price").innerText = priceCalculator().total + "€"
 
           setCurrentLegTexture("legTexture" + i)
           
@@ -134,7 +134,7 @@ const Step3 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">LEGS</p>
+          <p className="title">MODEL</p>
           <div className="checkbox-container">
             {legs}
           </div>
@@ -216,6 +216,13 @@ export const loadLegs = (url) => {
       newLegs.add(leg2)
       newLegs.add(leg3)
       newLegs.add(leg4)
+
+      newLegs.traverse((object) => {
+        if (object.isMesh) {
+          object.castShadow = true
+          object.receiveShadow = true;
+        }
+      })
 
       let currentWidth = parseInt(sessionStorage.getItem("currentWidth"), 10)
       let currentLength = parseInt(sessionStorage.getItem("currentLength"), 10)

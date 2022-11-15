@@ -7,8 +7,8 @@ const App = () => {
   const [useSteps, setSteps] = useState(1); //This was null for some reason, so I changed it to 1, if something breaks it might be this
   return (
     <div className="App">
-      <Header step={useSteps} />
       <Body setSteps={setSteps} useSteps={useSteps} />
+      <Header step={useSteps} />
     </div>
   );
 }
