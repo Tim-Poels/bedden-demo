@@ -36,7 +36,7 @@ const Step3 = (props) => {
 
     activeTexture.classList.add("active")
 
-    document.getElementById("price").innerText = priceCalculator()
+    document.getElementById("price").innerText = priceCalculator().total + "€"
   })
 
   const [useCurrentLeg, setCurrentLeg] = useState(sessionStorage.getItem("currentLeg"))
@@ -65,7 +65,7 @@ const Step3 = (props) => {
             //store in the session storage which leg is the new one
             sessionStorage.setItem("currentLeg", legURLs[i])
             
-            document.getElementById("price").innerText = priceCalculator()
+            document.getElementById("price").innerText = priceCalculator().total + "€"
 
             setCurrentLeg(legURLs[i])
           }
@@ -110,7 +110,7 @@ const Step3 = (props) => {
           })
           sessionStorage.setItem("currentLegTexture", "legTexture" + i)
 
-          document.getElementById("price").innerText = priceCalculator()
+          document.getElementById("price").innerText = priceCalculator().total + "€"
 
           setCurrentLegTexture("legTexture" + i)
           

@@ -11,7 +11,7 @@ const Step1 = (props) => {
     let lengthSlider = document.getElementById("lengthSlider")
     lengthSlider.value = currentLength
 
-    document.getElementById("price").innerText = priceCalculator();
+    document.getElementById("price").innerText = priceCalculator().total + "€";
   })
 
   let currentWidth
@@ -44,7 +44,7 @@ const Step1 = (props) => {
     }
     if (currentWidth !== newWidth) {
       sessionStorage.setItem("currentWidth", newWidth)
-      document.getElementById("price").innerText = priceCalculator();
+      document.getElementById("price").innerText = priceCalculator().total + "€";
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names
@@ -85,7 +85,7 @@ const Step1 = (props) => {
     }
     if (currentLength !== newLength) {
       sessionStorage.setItem("currentLength", newLength)
-      document.getElementById("price").innerText = priceCalculator();
+      document.getElementById("price").innerText = priceCalculator().total + "€";
       if (scene) {
         if (scene.children[4]) {
           // Creates an object that includes the elements of the bed under associating names

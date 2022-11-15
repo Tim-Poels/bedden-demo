@@ -1,4 +1,10 @@
+import { useEffect } from "react"
+import priceCalculator from "./priceCalculator.js"
+
 const Step4 = (props) => {
+  useEffect(() => {
+    document.getElementById("price").innerText = priceCalculator().total + "€"
+  })
   return (
     <div className="body-steps">
       <div className="step-header">
@@ -14,6 +20,7 @@ const Step4 = (props) => {
         <div></div>
         <div className="next-previous-step">
           <button className="previous-button" onClick={() => {props.setSteps(3)}}> previous </button>
+          <p id="price">placeholder</p>
           <button className="next-button" onClick={() => {props.setSteps(5)}}>NEXT</button>
         </div>
       </div>

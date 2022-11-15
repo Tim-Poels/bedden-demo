@@ -267,3 +267,34 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #A8DADC;
 }
+
+/* BILL */
+
+.checkout-tab {
+  background-color: rgb(226, 226, 226);
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+.checkout-tab .flex {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.checkout-tab .section {
+  padding-left: 10px;
+}
+
+.checkout-tab .sub {
+  padding-top: 2.5px;
+}
+
+.checkout-tab .items-display {
+  padding-bottom: 15px;
+}
+
+.checkout-tab .total {
+  border-top: 2px solid black;
+  padding-bottom: 10px;
+}

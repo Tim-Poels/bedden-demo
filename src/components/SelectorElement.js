@@ -4,6 +4,7 @@ import Step1 from "./steps/Step1.js"
 import Step2 from "./steps/Step2.js"	
 import Step3 from "./steps/Step3.js"
 import Step4 from "./steps/Step4.js"
+import Step5 from "./steps/Step5.js"
 import { useEffect } from "react"
 
 const SelectorElement = (props) => {
@@ -28,7 +29,7 @@ const SelectorElement = (props) => {
       renderedStep = <Step4 setSteps={props.setSteps}/>
       break;
     case 5: 
-      // renderedStep = <Step5 setSteps={props.setSteps}/>
+      renderedStep = <Step5 setSteps={props.setSteps}/>
       break;
     default: 
       renderedStep = <Step1 setSteps={props.setSteps}/>
