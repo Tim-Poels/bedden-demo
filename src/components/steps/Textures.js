@@ -49,21 +49,21 @@ import { getBed } from "./Step1.js"
 const textures = [
   {
     Id: 0,
-    Name: "white-test",
-    Img: whiteImg, 
-    AO: whiteAO,
-    Color: whiteColor,
-    Normal: whiteNormal,
-    Roughness: whiteRoughness,
-  },
-  {
-    Id: 1,
     Name: "red-test",
     Img: redImg, 
     AO: redAO,
     Color: redColor,
     Normal: redNormal,
     Roughness: redRoughness,
+  },
+  {
+    Id: 1,
+    Name: "white-test",
+    Img: whiteImg, 
+    AO: whiteAO,
+    Color: whiteColor,
+    Normal: whiteNormal,
+    Roughness: whiteRoughness,
   },
   {
     Id: 2,
@@ -88,16 +88,16 @@ const textures = [
 export const addTexture = () => {
   const textureLoader = new THREE.TextureLoader()
 
-  let index = 1 // Index of the texture that you want loaded when there is no texture in the sessionStorage
+  let index = 0 // Index of the texture that you want loaded when there is no texture in the sessionStorage
 
   let sessionTexture = sessionStorage.getItem("texture");
 
   if (sessionTexture) {
     switch (sessionTexture) {
-      case "white-test":
+      case "red-test":
         index = 0;
         break;
-      case "red-test":
+      case "white-test":
         index = 1;
         break;
       case "orange-test":
@@ -107,7 +107,7 @@ export const addTexture = () => {
         index = 3;
         break;
       default: 
-        index = 1;
+        index = 0;
         sessionStorage.setItem("texture", "red-test");
         break;
     }
@@ -224,6 +224,7 @@ export const addTexture = () => {
     map: bigBlanketColorMap,
     normalMap: bigBlanketNormalMap,
     roughnessMap: bigBlanketRoughnessMap,
+    roughness: 1
   })
 
   bed.bigBlanket.material = bigBlanketMaterial

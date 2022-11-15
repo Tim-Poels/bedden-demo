@@ -87,7 +87,7 @@ const Step2 = (props) => {
           <p className="number">2</p>
         </div>
         <p className="title">
-          STOF
+          FABRIC
         </p>
       </div>
       <div className="step-container">

@@ -134,7 +134,7 @@ const Step3 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">LEGS</p>
+          <p className="title">MODEL</p>
           <div className="checkbox-container">
             {legs}
           </div>
@@ -218,7 +218,10 @@ export const loadLegs = (url) => {
       newLegs.add(leg4)
 
       newLegs.traverse((object) => {
-        if (object.isMesh) object.castShadow = true
+        if (object.isMesh) {
+          object.castShadow = true
+          object.receiveShadow = true;
+        }
       })
 
       let currentWidth = parseInt(sessionStorage.getItem("currentWidth"), 10)

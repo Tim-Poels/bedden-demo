@@ -68,8 +68,8 @@
 }
 
 .selection-container > .title {
-  font-weight: 300;
-  font-size: 28px;
+  font-weight: 200;
+  font-size: 24px;
   letter-spacing: 3px;
   padding-bottom: 20px;
   color: #0078FF;
@@ -86,7 +86,7 @@
 }
 
 #price {
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .previous-button { 
@@ -97,17 +97,18 @@
   width: 125px;
   border: 0;
   font-style: italic;
+  font-weight: 200;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .next-button {
-  color: white;
-  font-weight: bold;
+  color: #0078FF;
+  background-color: transparent;
+  font-weight: 200;
   font-size: 24px;
   height: 50px;
   width: 125px;
-  background-color: #0078FF;
   border: 0;
   border-radius: 2px;
   cursor: pointer;
@@ -163,12 +164,6 @@
   background-color: #FF8A25;
   border: 0;
 }
-
-.single-slider > .name {
-  /* color: #A8DADC */
-}
-
-/* #FFC45F; */
 
 /* SLIDERS */
 
@@ -272,8 +267,16 @@ input[type=range]:focus::-ms-fill-upper {
 
 .checkout-tab {
   background-color: rgb(226, 226, 226);
-  margin-top: 20px;
+  margin: 20px 0px;
   padding: 10px 20px;
+  height: 100%;
+}
+
+.checkout-tab .bill {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .checkout-tab .flex {

@@ -7,7 +7,7 @@ const priceCalculator = () => {
   
   let bill = {}
 
-  let price = 99.99;
+  let price = 149.99;
 
   let framePrice = 0;
 
@@ -17,8 +17,13 @@ const priceCalculator = () => {
   if (lenght) framePrice += lenght
   else framePrice += 220
 
-  bill.frame = framePrice;
-  price += framePrice;
+  bill.frame = framePrice / 2;
+  
+  price += framePrice / 2;
+
+  bill.matres = (framePrice - 20) / 2;
+
+  price += (framePrice - 20) / 2;
 
   let texturePrice;
 
@@ -46,22 +51,22 @@ const priceCalculator = () => {
 
   switch (leg) {
     case "legs/101_POOT_A.glb":
-      legPrice = 60
+      legPrice = 10
       break;
     case "legs/101_POOT_B_ALU.glb":
-      legPrice = 70
+      legPrice = 20
       break;
     case "legs/101_POOT_CDZ.glb":
-      legPrice = 60
+      legPrice = 30
       break;
     case "legs/101_POOT_DZ.glb":
-      legPrice = 120
+      legPrice = 20
       break;
     case "legs/101_POOT_EO_ZWART.glb":
-      legPrice = 100
+      legPrice = 30
       break;
     default:
-      legPrice = 60
+      legPrice = 10
   }
 
   bill.leg = legPrice
@@ -71,24 +76,25 @@ const priceCalculator = () => {
 
   switch (legTexture) {
     case "legTexture0":
-      legMaterialPrice = 0
+      legMaterialPrice = 50
       break;
     case "legTexture1":
-      legMaterialPrice = 10
+      legMaterialPrice = 60
       break;
     case "legTexture2":
-      legMaterialPrice = 10
+      legMaterialPrice = 50
       break;
     case "legTexture3":
-      legMaterialPrice = 20
+      legMaterialPrice = 70
       break;
     default:
-      legMaterialPrice = 0
+      legMaterialPrice = 50
       break;
   }
 
   bill.legMaterial = legMaterialPrice
   price += legMaterialPrice
+
 
   bill.total = price
 
