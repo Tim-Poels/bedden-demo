@@ -37,7 +37,7 @@ const Step4 = (props) => {
     <div className="body-steps">
       <div className="step-header">
         <div className="orange-box">
-          <p className="step">step</p>
+          <p className="step">Step</p>
           <p className="number">5</p>
         </div>
         <p className="title">
@@ -103,8 +103,8 @@ const Step4 = (props) => {
         </div>
         </div>
         <div className="next-previous-step">
-          <button className="previous-button" onClick={() => {props.setSteps(4)}}> previous </button>
-          <button className="next-button">ORDER</button>
+          <button className="previous-button" onClick={() => {props.setSteps(4)}}> Previous </button>
+          <button className="next-button">Order</button>
         </div>
       </div>
     </div>

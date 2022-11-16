@@ -22,6 +22,24 @@ import yellowNormal from "../../assets/textures/Normal/yellow-test.jpg"
 import yellowRoughness from "../../assets/textures/Roughness/yellow-test.jpg"
 import yellowImg from "../../assets/textures/Cover/yellow-test.jpg"
 
+import blueAO from "../../assets/textures/AO/blue.jpg"
+import blueColor from "../../assets/textures/Color/blue.jpg"
+import blueNormal from "../../assets/textures/Normal/blue.jpg"
+import blueRoughness from "../../assets/textures/Roughness/blue.jpg"
+import blueImg from "../../assets/textures/Cover/blue.jpg"
+
+import lightBlueAO from "../../assets/textures/AO/light-blue.jpg"
+import lightBlueColor from "../../assets/textures/Color/light-blue.jpg"
+import lightBlueNormal from "../../assets/textures/Normal/light-blue.jpg"
+import lightBlueRoughness from "../../assets/textures/Roughness/light-blue.jpg"
+import lightBlueImg from "../../assets/textures/Cover/light-blue.jpg"
+
+import emeraldAO from "../../assets/textures/AO/emerald.jpg"
+import emeraldColor from "../../assets/textures/Color/emerald.jpg"
+import emeraldNormal from "../../assets/textures/Normal/emerald.jpg"
+import emeraldRoughness from "../../assets/textures/Roughness/emerald.jpg"
+import emeraldImg from "../../assets/textures/Cover/emerald.jpg"
+
 import littleBlanketColor from "../../assets/textures/Color/littleBlanket.jpg"
 import littleBlanketNormal from "../../assets/textures/Normal/littleBlanket.jpg"
 import littleBlanketRoughness from "../../assets/textures/Roughness/littleBlanket.jpg"
@@ -49,16 +67,16 @@ import { getBed } from "./Step1.js"
 const textures = [
   {
     Id: 0,
-    Name: "red-test",
-    Img: redImg, 
-    AO: redAO,
-    Color: redColor,
-    Normal: redNormal,
-    Roughness: redRoughness,
+    Name: "dark blue",
+    Img: blueImg, 
+    AO: blueAO,
+    Color: blueColor,
+    Normal: blueNormal,
+    Roughness: blueRoughness,
   },
   {
     Id: 1,
-    Name: "white-test",
+    Name: "ash grey",
     Img: whiteImg, 
     AO: whiteAO,
     Color: whiteColor,
@@ -67,7 +85,7 @@ const textures = [
   },
   {
     Id: 2,
-    Name: "orange-test",
+    Name: "warm orange",
     Img: orangeImg, 
     AO: orangeAO,
     Color: orangeColor,
@@ -76,12 +94,39 @@ const textures = [
   },
   {
     Id: 3,
-    Name: "yellow-test",
+    Name: "dark yellow",
     Img: yellowImg, 
     AO: yellowAO,
     Color: yellowColor,
     Normal: yellowNormal,
     Roughness: yellowRoughness,
+  },
+  {
+    Id: 4,
+    Name: "bordeaux",
+    Img: redImg, 
+    AO: redAO,
+    Color: redColor,
+    Normal: redNormal,
+    Roughness: redRoughness,
+  },
+  {
+    Id: 5,
+    Name: "light blue",
+    Img: lightBlueImg, 
+    AO: lightBlueAO,
+    Color: lightBlueColor,
+    Normal: lightBlueNormal,
+    Roughness: lightBlueRoughness,
+  },
+  {
+    Id: 6,
+    Name: "emerald",
+    Img: emeraldImg, 
+    AO: emeraldAO,
+    Color: emeraldColor,
+    Normal: emeraldNormal,
+    Roughness: emeraldRoughness,
   },
 ];
 
@@ -94,26 +139,35 @@ export const addTexture = () => {
 
   if (sessionTexture) {
     switch (sessionTexture) {
-      case "red-test":
+      case "dark blue":
         index = 0;
         break;
-      case "white-test":
+      case "ash grey":
         index = 1;
         break;
-      case "orange-test":
+      case "warm orange":
         index = 2;
         break;
-      case "yellow-test":
+      case "dark yellow":
         index = 3;
+        break;
+      case "bordeaux":
+        index = 4;
+        break;
+      case "light blue":
+        index = 5;
+        break;
+      case "emerald":
+        index = 6;
         break;
       default: 
         index = 0;
-        sessionStorage.setItem("texture", "red-test");
+        sessionStorage.setItem("texture", "dark blue");
         break;
     }
   }
   else {
-    sessionStorage.setItem("texture", "red-test");
+    sessionStorage.setItem("texture", "dark blue");
   }
 
 
@@ -124,25 +178,27 @@ export const addTexture = () => {
     return null
   }
 
+  let repeatScale = 0.3
+
   let frameColor = textureLoader.load( textures[index].Color );
   frameColor.wrapS = THREE.RepeatWrapping;
   frameColor.wrapT = THREE.RepeatWrapping;
-  // roughness.repeat.set( 2, 2 );
+  frameColor.repeat.set( repeatScale, repeatScale );
         
   let frameNormal = textureLoader.load( textures[index].Normal );
   frameNormal.wrapS = THREE.RepeatWrapping;
   frameNormal.wrapT = THREE.RepeatWrapping;
-  // normal.repeat.set( 2, 2 );
+  frameNormal.repeat.set( repeatScale, repeatScale );
 
   let frameRoughness = textureLoader.load( textures[index].Roughness );
   frameRoughness.wrapS = THREE.RepeatWrapping;
   frameRoughness.wrapT = THREE.RepeatWrapping;
-  // roughness.repeat.set( 2, 2 );
+  frameRoughness.repeat.set( repeatScale, repeatScale );
 
   let frameAO = textureLoader.load( textures[index].AO );
   frameAO.wrapS = THREE.RepeatWrapping;
   frameAO.wrapT = THREE.RepeatWrapping;
-  // roughness.repeat.set( 2, 2 );
+  frameAO.repeat.set( repeatScale, repeatScale );
 
   let frameMaterial = new THREE.MeshStandardMaterial({ 
     map: frameColor,

@@ -141,19 +141,28 @@ export const CanvasElement = React.memo((props) => {
     scene.add(floor)
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
     scene.add(ambientLight)
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, .6)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7)
     directionalLight.position.set(5, 5, 5)
     scene.add(directionalLight)
 
     directionalLight.castShadow = true;
 
-    directionalLight.shadow.mapSize.width = 512; // default
-    directionalLight.shadow.mapSize.height = 512; // default
-    directionalLight.shadow.camera.near = 0.5; // default
-    directionalLight.shadow.camera.far = 500;
+    directionalLight.shadow.mapSize.width = 512;
+    directionalLight.shadow.mapSize.height = 512;
+
+    directionalLight.shadow.camera.top = 2
+    directionalLight.shadow.camera.right = -2
+    directionalLight.shadow.camera.bottom = -1
+    directionalLight.shadow.camera.left = 2
+
+    directionalLight.shadow.camera.near = 6;
+    directionalLight.shadow.camera.far = 12;
+
+    // const helper = new THREE.CameraHelper(directionalLight.shadow.camera)
+    // scene.add(helper)
 
     // Sizes
     const sizes = {
@@ -188,8 +197,11 @@ export const CanvasElement = React.memo((props) => {
     controls.enableDamping = true
 
     // Renderer
+
+    
     const renderer = new THREE.WebGLRenderer({
-      canvas: canvas
+      canvas: canvas,
+      antialias: true
     })
 
     renderer.setSize(sizes.width, sizes.height)

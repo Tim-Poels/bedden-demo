@@ -136,7 +136,7 @@ const Step1 = (props) => {
     <div className="body-steps">
       <div className="step-header">
         <div className="orange-box">
-          <p className="step">step</p>
+          <p className="step">Step</p>
           <p className="number">1</p>
         </div>
         <p className="title">
@@ -145,7 +145,7 @@ const Step1 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">SIZE</p>
+          <p className="title">Size</p>
           <div className="slider-container">
             <div className="single-slider">
               <div className="name">Width</div>
@@ -172,11 +172,11 @@ const Step1 = (props) => {
           </div>
         </div>
         <div className="next-previous-step">
-          <button className="previous-button greyed-out-button"> previous </button>
+          <button className="previous-button greyed-out-button"> Previous </button>
           <p id="price">placeholder</p>
           <button className="next-button" onClick={() => {
             props.setSteps(2)
-          }}>NEXT</button>
+          }}>Next</button>
         </div>
       </div>
     </div>

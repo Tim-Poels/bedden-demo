@@ -73,7 +73,11 @@ const Step2 = (props) => {
 
         setTexture(texture.Name)
       }}>
-        <img className="checkbox-img"  alt="error loading img" src={texture.Img}></img>
+        <div className="img-container">
+          <img className="checkbox-img"  alt="error loading img" src={texture.Img}></img>
+        </div>
+        <div className="checkbox-name">{texture.Name.split(" ")[0]}</div>
+        <div className="checkbox-name">{texture.Name.split(" ")[1]}</div>
         <div className="checkbox-checker"></div>
       </div>
     );
@@ -83,7 +87,7 @@ const Step2 = (props) => {
     <div className="body-steps">
       <div className="step-header">
         <div className="orange-box">
-          <p className="step">step</p>
+          <p className="step">Step</p>
           <p className="number">2</p>
         </div>
         <p className="title">
@@ -92,15 +96,15 @@ const Step2 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">FABRIC</p>
+          <p className="title">Fabric</p>
           <div className="checkbox-container">
             {checkboxes}
           </div>
         </div>
         <div className="next-previous-step">
-          <button className="previous-button" onClick={() => {props.setSteps(1)}}> previous </button>
+          <button className="previous-button" onClick={() => {props.setSteps(1)}}> Previous </button>
           <p id="price">placeholder</p>
-          <button className="next-button" onClick={() => {props.setSteps(3)}}>NEXT</button>
+          <button className="next-button" onClick={() => {props.setSteps(3)}}>Next</button>
         </div>
       </div>
     </div>

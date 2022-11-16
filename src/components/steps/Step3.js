@@ -125,7 +125,7 @@ const Step3 = (props) => {
     <div className="body-steps">
       <div className="step-header">
         <div className="orange-box">
-          <p className="step">step</p>
+          <p className="step">Step</p>
           <p className="number">3</p>
         </div>
         <p className="title">
@@ -134,20 +134,20 @@ const Step3 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">MODEL</p>
+          <p className="title">Model</p>
           <div className="checkbox-container">
             {legs}
           </div>
 
-          <p className="title">COLOR</p>
+          <p className="title">Color</p>
           <div className="checkbox-container">
             {colors}
           </div>
         </div>
         <div className="next-previous-step">
-          <button className="previous-button" onClick={() => {props.setSteps(2)}}> previous </button>
+          <button className="previous-button" onClick={() => {props.setSteps(2)}}> Previous </button>
           <p id="price">placeholder</p>
-          <button className="next-button" onClick={() => {props.setSteps(4)}}>NEXT</button>
+          <button className="next-button" onClick={() => {props.setSteps(4)}}>Next</button>
         </div>
       </div>
     </div>

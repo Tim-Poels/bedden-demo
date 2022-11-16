@@ -28,7 +28,7 @@
 
 .orange-box > .step, .orange-box > .number {
   color: white;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .orange-box > .step {
@@ -127,19 +127,33 @@
 }
 
 .checkbox {
-  width: 161px;
-  aspect-ratio: 1 / 1;
+  width: calc((500px - 17px) / 5);
+  height: 134px;
   border: 1px solid lightgrey;
-  margin: 5px 5px 0px 0px;
+  margin: 3px 3px 0px 0px;
+  padding: 3px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
 }
 
-.checkbox-img {
-  height: 100%;
+.checkbox > .img-container {
+  width: 100%;
   aspect-ratio: 1 / 1;
+}
+
+.checkbox-img {
+  width: 100%;
+  aspect-ratio: 1 /1;
   object-fit: cover;
   z-index: 3;
+}
+
+.checkbox-name {
+  font-size: 14px;
+  font-weight: 200;
 }
 
 .active.checkbox {
