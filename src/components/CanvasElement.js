@@ -44,8 +44,8 @@ export const CanvasElement = React.memo((props) => {
         gltf.scene.children[0].scale.z = currentLength / 220
 
         gltf.scene.traverse((mesh) => {
-          if (mesh.name === "Bed_01012") {
-            mesh.children[0].castShadow = true;
+          if (mesh.isMesh) {
+            mesh.castShadow = true;
           }  
         })
 
@@ -127,10 +127,8 @@ export const CanvasElement = React.memo((props) => {
     // Floor
     const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 10),
-    new THREE.MeshStandardMaterial({
-        color: '#ffffff',
-        metalness: 0,
-        roughness: 0.5
+    new THREE.ShadowMaterial({
+        opacity: 0.7
       })
     )
 
