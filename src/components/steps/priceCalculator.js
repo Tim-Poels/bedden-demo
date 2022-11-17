@@ -28,19 +28,19 @@ const priceCalculator = () => {
   let texturePrice;
 
   switch (texture) {
-    case "ash grey":
+    case "Ash Grey":
       texturePrice = 50
       break;
-    case "bordeaux":
+    case "Bordeaux":
       texturePrice = 70
       break;
-    case "dark yellow":
+    case "Dark Yellow":
       texturePrice = 60
       break;
-    case "warm orange":
+    case "Warm Orange":
       texturePrice = 80
       break;
-    case "dark blue":
+    case "Dark Blue":
       texturePrice = 80
       break;
     default:

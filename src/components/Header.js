@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import "./Header.css"
-import { ReactComponent as Svg5 } from "../assets/svgs/cart2-svgrepo-com.svg"
-import { ReactComponent as Svg7 } from "../assets/svgs/full-view-svgrepo-com.svg"
-import { ReactComponent as Svg8 } from "../assets/svgs/furniture-home-house-7-svgrepo-com.svg"
+import { ReactComponent as Svg7 } from "../assets/svgs/thin-expand-arrows-svgrepo-com.svg"
 import  { ReactComponent as Svg10 } from "../assets/svgs/silk-svgrepo-com.svg"
+import { ReactComponent as Svg8 } from "../assets/svgs/furniture-home-house-7-svgrepo-com.svg"
+import { ReactComponent as Svg5 } from "../assets/svgs/cart-svgrepo-com.svg"
 
 const Header = (props) => {
   useEffect(() => {

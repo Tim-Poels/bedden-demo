@@ -67,7 +67,7 @@ import { getBed } from "./Step1.js"
 const textures = [
   {
     Id: 0,
-    Name: "dark blue",
+    Name: "Dark Blue",
     Img: blueImg, 
     AO: blueAO,
     Color: blueColor,
@@ -76,7 +76,7 @@ const textures = [
   },
   {
     Id: 1,
-    Name: "ash grey",
+    Name: "Ash Grey",
     Img: whiteImg, 
     AO: whiteAO,
     Color: whiteColor,
@@ -85,7 +85,7 @@ const textures = [
   },
   {
     Id: 2,
-    Name: "warm orange",
+    Name: "Warm Orange",
     Img: orangeImg, 
     AO: orangeAO,
     Color: orangeColor,
@@ -94,7 +94,7 @@ const textures = [
   },
   {
     Id: 3,
-    Name: "dark yellow",
+    Name: "Dark Yellow",
     Img: yellowImg, 
     AO: yellowAO,
     Color: yellowColor,
@@ -103,7 +103,7 @@ const textures = [
   },
   {
     Id: 4,
-    Name: "bordeaux",
+    Name: "Bordeaux",
     Img: redImg, 
     AO: redAO,
     Color: redColor,
@@ -112,7 +112,7 @@ const textures = [
   },
   {
     Id: 5,
-    Name: "light blue",
+    Name: "Light Blue",
     Img: lightBlueImg, 
     AO: lightBlueAO,
     Color: lightBlueColor,
@@ -121,7 +121,7 @@ const textures = [
   },
   {
     Id: 6,
-    Name: "emerald",
+    Name: "Emerald",
     Img: emeraldImg, 
     AO: emeraldAO,
     Color: emeraldColor,
@@ -139,35 +139,35 @@ export const addTexture = () => {
 
   if (sessionTexture) {
     switch (sessionTexture) {
-      case "dark blue":
+      case "Dark Blue":
         index = 0;
         break;
-      case "ash grey":
+      case "Ash Grey":
         index = 1;
         break;
-      case "warm orange":
+      case "Warm Orange":
         index = 2;
         break;
-      case "dark yellow":
+      case "Dark Yellow":
         index = 3;
         break;
-      case "bordeaux":
+      case "Bordeaux":
         index = 4;
         break;
-      case "light blue":
+      case "Light Blue":
         index = 5;
         break;
-      case "emerald":
+      case "Emerald":
         index = 6;
         break;
       default: 
         index = 0;
-        sessionStorage.setItem("texture", "dark blue");
+        sessionStorage.setItem("texture", "Dark Blue");
         break;
     }
   }
   else {
-    sessionStorage.setItem("texture", "dark blue");
+    sessionStorage.setItem("texture", "Dark Blue");
   }
 
 

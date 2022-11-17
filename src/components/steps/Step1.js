@@ -104,13 +104,15 @@ const Step1 = (props) => {
           bed.bigBlanket.scale.z /= scaleAdjust
           
           //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
+          let amountOfScaleAdjusts = Math.abs(newLength - currentLength) / 5
+          
           if (scaleAdjust < 1) {
-            bed.bigBlanket.position.z -= 45
-            bed.smallBlanket.position.z -= 50
+            bed.bigBlanket.position.z -= 45 * amountOfScaleAdjusts
+            bed.smallBlanket.position.z -= 50 * amountOfScaleAdjusts
           }
           else if (scaleAdjust > 1) {
-            bed.bigBlanket.position.z += 45
-            bed.smallBlanket.position.z += 50
+            bed.bigBlanket.position.z += 45 * amountOfScaleAdjusts
+            bed.smallBlanket.position.z += 50 * amountOfScaleAdjusts
           }
 
           // Changing the legs

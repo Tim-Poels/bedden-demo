@@ -58,7 +58,7 @@
 }
 
 .svg1 {
-  transform: translateY(10px) rotate(45deg) scale(110%, 110%)!important;
+  transform: translateY(10px) scale(65%, 65%)!important;
 }
 
 .svg2 {
@@ -70,7 +70,7 @@
 }
 
 .svg5 {
-  transform: translate(-5px, 10px) !important;
+  transform: translate(-3px, 10px) scale(85%, 85%)!important;
 }
 
 .configurator-step-text > div {
