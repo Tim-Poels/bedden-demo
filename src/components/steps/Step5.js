@@ -28,6 +28,9 @@ const Step4 = (props) => {
     case 3:
       legMaterialText = "Dark Grey Steel"
       break;
+    case 4:
+      legMaterialText = "Dark Brown"
+      break;
     default:
       legMaterialText = "error in step5.js"
       break;
