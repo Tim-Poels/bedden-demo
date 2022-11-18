@@ -46,6 +46,7 @@ export const CanvasElement = React.memo((props) => {
         gltf.scene.traverse((mesh) => {
           if (mesh.isMesh) {
             mesh.castShadow = true;
+            // mesh.recieveShadow = true;
           }  
         })
 
@@ -147,7 +148,7 @@ export const CanvasElement = React.memo((props) => {
     scene.add(ambientLight)
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
-    directionalLight.position.set(3, 15, 3)
+    directionalLight.position.set(7, 15, 7)
     scene.add(directionalLight)
 
     directionalLight.castShadow = true;
@@ -160,8 +161,8 @@ export const CanvasElement = React.memo((props) => {
     directionalLight.shadow.camera.bottom = -2
     directionalLight.shadow.camera.left = 2
 
-    directionalLight.shadow.camera.near = 13;
-    directionalLight.shadow.camera.far = 16.5;
+    directionalLight.shadow.camera.near = 15;
+    directionalLight.shadow.camera.far = 29;
 
     // const helper = new THREE.CameraHelper(directionalLight.shadow.camera)
     // scene.add(helper)

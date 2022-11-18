@@ -74,7 +74,7 @@ const Step2 = (props) => {
         setTexture(texture.Name)
       }}>
         <div className="img-container">
-          <img className="checkbox-img"  alt="error loading img" src={texture.Img}></img>
+          <img className="checkbox-img"  alt="loading..." src={texture.Img}></img>
         </div>
         <div className="checkbox-name">{texture.Name.split(" ")[0]}</div>
         <div className="checkbox-name">{texture.Name.split(" ")[1]}</div>

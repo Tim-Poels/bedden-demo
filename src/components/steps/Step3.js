@@ -15,6 +15,7 @@ import blackSteel from "../../assets/legs/colors/covers/blackSteel.jpg"
 import whiteSteel from "../../assets/legs/colors/covers/whiteSteel.jpg"
 import lightSteel from "../../assets/legs/colors/covers/lightSteel.jpg"
 import darkSteel from "../../assets/legs/colors/covers/darkSteel.jpg"
+import darkBrown from "../../assets/legs/colors/covers/DarkBrown.png"
 
 let legURLs = ["legs/101_POOT_A.glb", "legs/101_POOT_B_ALU.glb", "legs/101_POOT_CDZ.glb", "legs/101_POOT_DZ.glb", "legs/101_POOT_EO_ZWART.glb"];
 let colorMaterials = []
@@ -70,7 +71,7 @@ const Step3 = (props) => {
           }
         }}>
         <div className="img-container">
-          <img className="checkbox-img"  alt="error loading img" src={pictures[i]}></img>
+          <img className="checkbox-img"  alt="loading..." src={pictures[i]}></img>
         </div>
         <div className="checkbox-name">{"  "}</div>
         <div className="checkbox-name">{"Model " + legURLs[i].split(".")[0].split("_")[2]}</div>
@@ -81,7 +82,7 @@ const Step3 = (props) => {
   
   let colors = []
   
-  let colorCovers = [lightSteel, blackSteel, whiteSteel, darkSteel]
+  let colorCovers = [lightSteel, blackSteel, whiteSteel, darkSteel, darkBrown]
   
   if (!colorMaterials[0]) {
       colorMaterials.push(
@@ -98,6 +99,10 @@ const Step3 = (props) => {
   
     colorMaterials.push(
       new THREE.MeshStandardMaterial({ color: "gray", roughness: 0.2 }) // id: "legTexture3"
+    )
+
+    colorMaterials.push(
+      new THREE.MeshStandardMaterial({ color: "#a35e0a", roughness: 1 })
     )
   }
 
@@ -122,6 +127,10 @@ const Step3 = (props) => {
         legMaterialText1 = "Dark Grey"
         legMaterialText2 = "Steel"
         break;
+      case 4:
+        legMaterialText1 = "Dark"
+        legMaterialText2 = "Brown"
+        break;
       default:
         legMaterialText2 = "error in step5.js"
         break;
@@ -140,7 +149,7 @@ const Step3 = (props) => {
           
         }}>
         <div className="img-container">
-          <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]}></img>
+          <img className="checkbox-img"  alt="loading..." src={colorCovers[i]}></img>
         </div>
         <div className="checkbox-name">{legMaterialText1}</div>
         <div className="checkbox-name">{legMaterialText2}</div>
@@ -286,9 +295,12 @@ export const loadLegs = (url) => {
           new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture2"
         )
 
-
         colorMaterials.push(
           new THREE.MeshStandardMaterial({ color: "gray", roughness: 0.2 }) // id: "legTexture3"
+        )
+
+         colorMaterials.push(
+          new THREE.MeshStandardMaterial({ color: "#a35e0a", roughness: 1 })
         )
       }
       
