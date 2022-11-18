@@ -100,17 +100,19 @@ const Step1 = (props) => {
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.z /= scaleAdjust
           bed.outsidePillows.scale.z /= scaleAdjust
-          bed.smallBlanket.scale.z /= scaleAdjust
+          if (bed.smallBlanket) bed.smallBlanket.scale.z /= scaleAdjust
           bed.bigBlanket.scale.z /= scaleAdjust
           
           //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
+          let amountOfScaleAdjusts = Math.abs(newLength - currentLength) / 5
+          
           if (scaleAdjust < 1) {
-            bed.bigBlanket.position.z -= 45
-            bed.smallBlanket.position.z -= 50
+            bed.bigBlanket.position.z -= 45 * amountOfScaleAdjusts
+            if (bed.smallBlanket) bed.smallBlanket.position.z -= 50 * amountOfScaleAdjusts
           }
           else if (scaleAdjust > 1) {
-            bed.bigBlanket.position.z += 45
-            bed.smallBlanket.position.z += 50
+            bed.bigBlanket.position.z += 45 * amountOfScaleAdjusts
+            if (bed.smallBlanket) bed.smallBlanket.position.z += 50 * amountOfScaleAdjusts
           }
 
           // Changing the legs
@@ -136,7 +138,7 @@ const Step1 = (props) => {
     <div className="body-steps">
       <div className="step-header">
         <div className="orange-box">
-          <p className="step">step</p>
+          <p className="step">Step</p>
           <p className="number">1</p>
         </div>
         <p className="title">
@@ -145,7 +147,7 @@ const Step1 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">SIZE</p>
+          <p className="title">Size</p>
           <div className="slider-container">
             <div className="single-slider">
               <div className="name">Width</div>
@@ -172,11 +174,11 @@ const Step1 = (props) => {
           </div>
         </div>
         <div className="next-previous-step">
-          <button className="previous-button greyed-out-button"> previous </button>
+          <button className="previous-button greyed-out-button"> Previous </button>
           <p id="price">placeholder</p>
           <button className="next-button" onClick={() => {
             props.setSteps(2)
-          }}>NEXT</button>
+          }}>Next</button>
         </div>
       </div>
     </div>

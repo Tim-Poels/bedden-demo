@@ -22,6 +22,24 @@ import yellowNormal from "../../assets/textures/Normal/yellow-test.jpg"
 import yellowRoughness from "../../assets/textures/Roughness/yellow-test.jpg"
 import yellowImg from "../../assets/textures/Cover/yellow-test.jpg"
 
+import blueAO from "../../assets/textures/AO/blue.jpg"
+import blueColor from "../../assets/textures/Color/blue.jpg"
+import blueNormal from "../../assets/textures/Normal/blue.jpg"
+import blueRoughness from "../../assets/textures/Roughness/blue.jpg"
+import blueImg from "../../assets/textures/Cover/blue.jpg"
+
+import lightBlueAO from "../../assets/textures/AO/light-blue.jpg"
+import lightBlueColor from "../../assets/textures/Color/light-blue.jpg"
+import lightBlueNormal from "../../assets/textures/Normal/light-blue.jpg"
+import lightBlueRoughness from "../../assets/textures/Roughness/light-blue.jpg"
+import lightBlueImg from "../../assets/textures/Cover/light-blue.jpg"
+
+import emeraldAO from "../../assets/textures/AO/emerald.jpg"
+import emeraldColor from "../../assets/textures/Color/emerald.jpg"
+import emeraldNormal from "../../assets/textures/Normal/emerald.jpg"
+import emeraldRoughness from "../../assets/textures/Roughness/emerald.jpg"
+import emeraldImg from "../../assets/textures/Cover/emerald.jpg"
+
 import littleBlanketColor from "../../assets/textures/Color/littleBlanket.jpg"
 import littleBlanketNormal from "../../assets/textures/Normal/littleBlanket.jpg"
 import littleBlanketRoughness from "../../assets/textures/Roughness/littleBlanket.jpg"
@@ -35,8 +53,8 @@ import bigBlanketNormal from "../../assets/textures/Normal/bigBlanket.jpg"
 import bigBlanketRoughness from "../../assets/textures/Roughness/bigBlanket.jpg"
 
 import middlePillowColor from "../../assets/textures/Color/middlePillow.jpg"
-import middlePillowNormal from "../../assets/textures/Normal/middlePillow.jpg"
-import middlePillowRoughness from "../../assets/textures/Roughness/middlePillow.jpg"
+import middlePillowNormal from "../../assets/textures/Normal/outsidePillows.jpg"
+import middlePillowRoughness from "../../assets/textures/Roughness/outsidePillows.jpg"
 
 import outsidePillowsColor from "../../assets/textures/Color/outsidePillows.jpg"
 import outsidePillowsNormal from "../../assets/textures/Normal/outsidePillows.jpg"
@@ -49,16 +67,16 @@ import { getBed } from "./Step1.js"
 const textures = [
   {
     Id: 0,
-    Name: "red-test",
-    Img: redImg, 
-    AO: redAO,
-    Color: redColor,
-    Normal: redNormal,
-    Roughness: redRoughness,
+    Name: "Dark Blue",
+    Img: blueImg, 
+    AO: blueAO,
+    Color: blueColor,
+    Normal: blueNormal,
+    Roughness: blueRoughness,
   },
   {
     Id: 1,
-    Name: "white-test",
+    Name: "Ash Grey",
     Img: whiteImg, 
     AO: whiteAO,
     Color: whiteColor,
@@ -67,7 +85,7 @@ const textures = [
   },
   {
     Id: 2,
-    Name: "orange-test",
+    Name: "Warm Orange",
     Img: orangeImg, 
     AO: orangeAO,
     Color: orangeColor,
@@ -76,12 +94,39 @@ const textures = [
   },
   {
     Id: 3,
-    Name: "yellow-test",
+    Name: "Dark Yellow",
     Img: yellowImg, 
     AO: yellowAO,
     Color: yellowColor,
     Normal: yellowNormal,
     Roughness: yellowRoughness,
+  },
+  {
+    Id: 4,
+    Name: "Bordeaux",
+    Img: redImg, 
+    AO: redAO,
+    Color: redColor,
+    Normal: redNormal,
+    Roughness: redRoughness,
+  },
+  {
+    Id: 5,
+    Name: "Light Blue",
+    Img: lightBlueImg, 
+    AO: lightBlueAO,
+    Color: lightBlueColor,
+    Normal: lightBlueNormal,
+    Roughness: lightBlueRoughness,
+  },
+  {
+    Id: 6,
+    Name: "Emerald",
+    Img: emeraldImg, 
+    AO: emeraldAO,
+    Color: emeraldColor,
+    Normal: emeraldNormal,
+    Roughness: emeraldRoughness,
   },
 ];
 
@@ -94,26 +139,35 @@ export const addTexture = () => {
 
   if (sessionTexture) {
     switch (sessionTexture) {
-      case "red-test":
+      case "Dark Blue":
         index = 0;
         break;
-      case "white-test":
+      case "Ash Grey":
         index = 1;
         break;
-      case "orange-test":
+      case "Warm Orange":
         index = 2;
         break;
-      case "yellow-test":
+      case "Dark Yellow":
         index = 3;
+        break;
+      case "Bordeaux":
+        index = 4;
+        break;
+      case "Light Blue":
+        index = 5;
+        break;
+      case "Emerald":
+        index = 6;
         break;
       default: 
         index = 0;
-        sessionStorage.setItem("texture", "red-test");
+        sessionStorage.setItem("texture", "Dark Blue");
         break;
     }
   }
   else {
-    sessionStorage.setItem("texture", "red-test");
+    sessionStorage.setItem("texture", "Dark Blue");
   }
 
 
@@ -124,25 +178,27 @@ export const addTexture = () => {
     return null
   }
 
+  let repeatScale = 0.3
+
   let frameColor = textureLoader.load( textures[index].Color );
   frameColor.wrapS = THREE.RepeatWrapping;
   frameColor.wrapT = THREE.RepeatWrapping;
-  // roughness.repeat.set( 2, 2 );
+  frameColor.repeat.set( repeatScale, repeatScale );
         
   let frameNormal = textureLoader.load( textures[index].Normal );
   frameNormal.wrapS = THREE.RepeatWrapping;
   frameNormal.wrapT = THREE.RepeatWrapping;
-  // normal.repeat.set( 2, 2 );
+  frameNormal.repeat.set( repeatScale, repeatScale );
 
   let frameRoughness = textureLoader.load( textures[index].Roughness );
   frameRoughness.wrapS = THREE.RepeatWrapping;
   frameRoughness.wrapT = THREE.RepeatWrapping;
-  // roughness.repeat.set( 2, 2 );
+  frameRoughness.repeat.set( repeatScale, repeatScale );
 
   let frameAO = textureLoader.load( textures[index].AO );
   frameAO.wrapS = THREE.RepeatWrapping;
   frameAO.wrapT = THREE.RepeatWrapping;
-  // roughness.repeat.set( 2, 2 );
+  frameAO.repeat.set( repeatScale, repeatScale );
 
   let frameMaterial = new THREE.MeshStandardMaterial({ 
     map: frameColor,
@@ -199,11 +255,7 @@ export const addTexture = () => {
 
   bed.matres.material = matresMaterial
 
-  bed.middlePillow.material = matresMaterial
-
   bed.longPillow.material = matresMaterial
-
-  bed.outsidePillows.material = matresMaterial
 
   let bigBlanketColorMap = textureLoader.load( bigBlanketColor )
   bigBlanketColorMap.wrapS = THREE.RepeatWrapping;
@@ -223,7 +275,7 @@ export const addTexture = () => {
   let bigBlanketMaterial = new THREE.MeshStandardMaterial({ 
     map: bigBlanketColorMap,
     normalMap: bigBlanketNormalMap,
-    roughnessMap: bigBlanketRoughnessMap,
+    // roughnessMap: bigBlanketRoughnessMap,
     roughness: 1
   })
 
@@ -232,17 +284,17 @@ export const addTexture = () => {
   let middlePillowColorMap = textureLoader.load( middlePillowColor )
   middlePillowColorMap.wrapS = THREE.RepeatWrapping;
   middlePillowColorMap.wrapT = THREE.RepeatWrapping;
-  middlePillowColorMap.repeat.set(1.5, 1.5);
+  middlePillowColorMap.repeat.set(2, 2);
 
   let middlePillowRoughnessMap = textureLoader.load( middlePillowRoughness )
   middlePillowRoughnessMap.wrapS = THREE.RepeatWrapping;
   middlePillowRoughnessMap.wrapT = THREE.RepeatWrapping;
-  middlePillowRoughnessMap.repeat.set(1.5, 1.5);
+  middlePillowRoughnessMap.repeat.set(2, 2);
 
   let middlePillowNormalMap = textureLoader.load( middlePillowNormal )
   middlePillowNormalMap.wrapS = THREE.RepeatWrapping;
   middlePillowNormalMap.wrapT = THREE.RepeatWrapping;
-  middlePillowNormalMap.repeat.set(1.5, 1.5);
+  middlePillowNormalMap.repeat.set(2, 2);
 
   let middlePillowMaterial = new THREE.MeshStandardMaterial({ 
     map: middlePillowColorMap,
@@ -255,22 +307,22 @@ export const addTexture = () => {
   let outsidePillowsColorMap = textureLoader.load( outsidePillowsColor )
   outsidePillowsColorMap.wrapS = THREE.RepeatWrapping;
   outsidePillowsColorMap.wrapT = THREE.RepeatWrapping;
-  outsidePillowsColorMap.repeat.set(2.5, 2.5);
+  outsidePillowsColorMap.repeat.set(2, 2);
 
   let outsidePillowsRoughnessMap = textureLoader.load( outsidePillowsRoughness )
   middlePillowRoughnessMap.wrapS = THREE.RepeatWrapping;
   middlePillowRoughnessMap.wrapT = THREE.RepeatWrapping;
-  middlePillowRoughnessMap.repeat.set(2.5, 2.5);
+  middlePillowRoughnessMap.repeat.set(2, 2);
 
   let outsidePillowsNormalMap = textureLoader.load( outsidePillowsNormal )
   outsidePillowsNormalMap.wrapS = THREE.RepeatWrapping;
   outsidePillowsNormalMap.wrapT = THREE.RepeatWrapping;
-  outsidePillowsNormalMap.repeat.set(2.5, 2.5);
+  outsidePillowsNormalMap.repeat.set(2, 2);
 
   let outsidePillowsMaterial = new THREE.MeshStandardMaterial({ 
     map: outsidePillowsColorMap,
     normalMap: outsidePillowsNormalMap,
-    roughnessMap: outsidePillowsRoughnessMap,
+    // roughnessMap: outsidePillowsRoughnessMap,
     roughness: 1,
   })
 

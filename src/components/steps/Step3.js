@@ -51,9 +51,8 @@ const Step3 = (props) => {
   //all the locations of the glb models of the legs
   for (let i = 0; i < legURLs.length ; i++) {
     legs.push(
-      <div className="checkbox" id={legURLs[i]} key={i}>
-        <img className="checkbox-img"  alt="error loading img" src={pictures[i]} onClick={() => {
-          console.log("the legs are active output: " + !(sessionStorage.getItem("currentLeg") === legURLs[i]))
+      <div className="checkbox" id={legURLs[i]} key={i}
+      onClick={() => {
           //check if the leg is already the active one
           if (!(sessionStorage.getItem("currentLeg") === legURLs[i])) {
             //remove the other leg
@@ -69,7 +68,12 @@ const Step3 = (props) => {
 
             setCurrentLeg(legURLs[i])
           }
-        }} ></img>
+        }}>
+        <div className="img-container">
+          <img className="checkbox-img"  alt="error loading img" src={pictures[i]}></img>
+        </div>
+        <div className="checkbox-name">{"  "}</div>
+        <div className="checkbox-name">{"Model " + legURLs[i].split(".")[0].split("_")[2]}</div>
         <div className="checkbox-checker"></div>
       </div>
     )
@@ -77,21 +81,19 @@ const Step3 = (props) => {
   
   let colors = []
   
-  let colorCovers = [blackSteel, whiteSteel, lightSteel, darkSteel]
+  let colorCovers = [lightSteel, blackSteel, whiteSteel, darkSteel]
   
   if (!colorMaterials[0]) {
-    
+      colorMaterials.push(
+        new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture0"
+      )
   
     colorMaterials.push(
-      new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 }) // id: "legTexture0"
+      new THREE.MeshStandardMaterial({ color: "#222222", roughness: 0.2, metalness: 0.85 }) // id: "legTexture1"
     )
   
     colorMaterials.push(
-      new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture1"
-    )
-  
-    colorMaterials.push(
-      new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture2"
+      new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture2"
     )
   
     colorMaterials.push(
@@ -101,9 +103,31 @@ const Step3 = (props) => {
 
 
   for (let i = 0; i < colorCovers.length; i++) {
+    let legMaterialText1 = "error"
+    let legMaterialText2 = "error"
+    switch (parseInt(i, 10)) {
+      case 0:
+        legMaterialText1 = "Light Grey"
+        legMaterialText2 = "Steel"
+        break;
+      case 1:
+        legMaterialText1 = "Black"
+        legMaterialText2 = "Steel"
+        break;
+      case 2:
+        legMaterialText1 = "White"
+        legMaterialText2 = "Steel"
+        break;
+      case 3:
+        legMaterialText1 = "Dark Grey"
+        legMaterialText2 = "Steel"
+        break;
+      default:
+        legMaterialText2 = "error in step5.js"
+        break;
+  }
     colors.push(
-      <div className="checkbox" id={"legTexture" + i} key={i}>
-        <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]} onClick={() => {
+      <div className="checkbox" id={"legTexture" + i} key={i}  onClick={() => {
           let leg = findOtherLegs()
           leg.traverse((mesh) => {
             if (mesh.isMesh) mesh.material = colorMaterials[i]
@@ -114,8 +138,12 @@ const Step3 = (props) => {
 
           setCurrentLegTexture("legTexture" + i)
           
-        }}></img>
-        <div className="checkbox-checker"></div>
+        }}>
+        <div className="img-container">
+          <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]}></img>
+        </div>
+        <div className="checkbox-name">{legMaterialText1}</div>
+        <div className="checkbox-name">{legMaterialText2}</div>
       </div>
     )
   }
@@ -125,7 +153,7 @@ const Step3 = (props) => {
     <div className="body-steps">
       <div className="step-header">
         <div className="orange-box">
-          <p className="step">step</p>
+          <p className="step">Step</p>
           <p className="number">3</p>
         </div>
         <p className="title">
@@ -134,20 +162,20 @@ const Step3 = (props) => {
       </div>
       <div className="step-container">
         <div className="selection-container">
-          <p className="title">MODEL</p>
+          <p className="title">Model</p>
           <div className="checkbox-container">
             {legs}
           </div>
 
-          <p className="title">COLOR</p>
+          <p className="title">Color</p>
           <div className="checkbox-container">
             {colors}
           </div>
         </div>
         <div className="next-previous-step">
-          <button className="previous-button" onClick={() => {props.setSteps(2)}}> previous </button>
+          <button className="previous-button" onClick={() => {props.setSteps(2)}}> Previous </button>
           <p id="price">placeholder</p>
-          <button className="next-button" onClick={() => {props.setSteps(4)}}>NEXT</button>
+          <button className="next-button" onClick={() => {props.setSteps(4)}}>Next</button>
         </div>
       </div>
     </div>
@@ -247,16 +275,17 @@ export const loadLegs = (url) => {
 
       if (!colorMaterials[num]) {
         colorMaterials.push(
-          new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 }) // id: "legTexture0"
+          new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture0"
         )
 
         colorMaterials.push(
-          new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture1"
+          new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 }) // id: "legTexture1"
         )
 
         colorMaterials.push(
-          new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture2"
+          new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture2"
         )
+
 
         colorMaterials.push(
           new THREE.MeshStandardMaterial({ color: "gray", roughness: 0.2 }) // id: "legTexture3"

@@ -9,36 +9,118 @@
 
 .configurator-step {
   height: calc((100% - 90px) / 5);
-  width: 50px;
+  width: 75px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 0px;
+  flex-direction: column;
   background-color: white;
-  border-radius: 4px 4px 100% 100% / 4px 4px 50% 50% ;
   margin-top: 15px;
-  border: 1px solid lightgrey;
-}
-
-.configurator-step.active {
-  border: 1px solid #0078FF;
-}
-
-.configurator-step.done {
-  border: 1px solid #A8DADC;
 }
 
 .configurator-step-text {
-  height: min-content;
-  font-size: 20px;
+  height: 70%;
+  border: 1px solid lightgrey;
+  border-bottom: 0;
+  font-size: 16px;
   color: #ffc45f63;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
   font-weight: 400;
   letter-spacing: 1px;
 }
 
+.configurator-step > .arrow {
+  clip-path: polygon(0 0, 50% 100%, 100% 0%);  
+  height: 30%;
+  width: 100%;
+  background-color: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.configurator-step > .arrow > .arrow-cover {
+  clip-path: polygon(0 0, 50% 100%, 100% 0%); 
+  height: 100%;
+  width: 100%;
+  transform: translateY(-1px);
+  background-color: white;
+  opacity: 1;
+}
+
+.configurator-step-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-3 > div, .step-5 > div{
+  box-sizing: content-box;
+}
+
+.configurator-step-text > .svg {
+  height: 50px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  z-index: 2;
+  transform: translateY(6vh);
+}
+
+@media only screen and (max-height: 800px) {
+  .configurator-step-text > .svg {
+    height: 40px;
+  }
+}
+
+.svg1 {
+  transform: translateY(6vh) scale(65%, 65%) !important;
+}
+
+.svg2 {
+  transform: translateY(6vh) scale(75%, 75%) !important;
+}
+
+.svg3 {
+  transform: translateY(6vh) scale(105%, 105%) !important;
+}
+
+.svg4 {
+  transform: translateY(6vh) scale(125%, 125%) !important;
+}
+
+.svg5 {
+  transform: translate(-3px, 6vh) scale(85%, 85%) !important;
+}
+
+.configurator-step-text > div {
+  height: min-content;
+  text-align: center;
+}
+
+.configurator-step-text > div > span {
+  font-size: 20px;
+}
+
 .configurator-step.active > .configurator-step-text {
+  border: 1px solid #0078FF;
+  border-bottom: 0;
+}
+
+.configurator-step.active > .arrow {
+  background-color: #0078FF;
+}
+
+.configurator-step.done > .configurator-step-text {
+  border: 1px solid #A8DADC;
+  border-bottom: 0;
+}
+
+.configurator-step.done > .arrow {
+  background-color: #A8DADC;
+}
+
+
+
+.configurator-step.active > .configurator-step-text {
+
   color: hsla(212, 100%, 50%, 0.85);
 }
 
