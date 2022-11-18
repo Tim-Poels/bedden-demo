@@ -100,7 +100,7 @@ const Step1 = (props) => {
           // Scales thepillows so they stay the same size (get's scaled up when the whole model does, and then scaled down sepperatly with the same factor)
           bed.middlePillow.scale.z /= scaleAdjust
           bed.outsidePillows.scale.z /= scaleAdjust
-          bed.smallBlanket.scale.z /= scaleAdjust
+          if (bed.smallBlanket) bed.smallBlanket.scale.z /= scaleAdjust
           bed.bigBlanket.scale.z /= scaleAdjust
           
           //positions the blankets on relatively the same place on the bed so that it doesn't seem stretched (100 waw what I calculated the position change to be but there was a little clipping so I changed it to 90)
@@ -108,11 +108,11 @@ const Step1 = (props) => {
           
           if (scaleAdjust < 1) {
             bed.bigBlanket.position.z -= 45 * amountOfScaleAdjusts
-            bed.smallBlanket.position.z -= 50 * amountOfScaleAdjusts
+            if (bed.smallBlanket) bed.smallBlanket.position.z -= 50 * amountOfScaleAdjusts
           }
           else if (scaleAdjust > 1) {
             bed.bigBlanket.position.z += 45 * amountOfScaleAdjusts
-            bed.smallBlanket.position.z += 50 * amountOfScaleAdjusts
+            if (bed.smallBlanket) bed.smallBlanket.position.z += 50 * amountOfScaleAdjusts
           }
 
           // Changing the legs

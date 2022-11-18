@@ -17,16 +17,16 @@ const Step4 = (props) => {
   let materialName = sessionStorage.getItem("currentLegTexture").split("Texture")[1]
   switch (parseInt(materialName, 10)) {
     case 0:
-      legMaterialText = "black steel"
+      legMaterialText = "Light Grey Steel"
       break;
     case 1:
-      legMaterialText = "white steel"
+      legMaterialText = "Black Steel"
       break;
     case 2:
-      legMaterialText = "light grey steel"
+      legMaterialText = "White Steel"
       break;
     case 3:
-      legMaterialText = "dark grey steel"
+      legMaterialText = "Dark Grey Steel"
       break;
     default:
       legMaterialText = "error in step5.js"
@@ -52,6 +52,7 @@ const Step4 = (props) => {
               <p>Standard Fee</p>
               <p>99.99€</p>
             </div>
+            <div className="devider"></div>
             <div className="section">
               <div className="flex">Frame:</div>
               <div className="sub section flex">
@@ -63,10 +64,11 @@ const Step4 = (props) => {
                 <p>+ {price.fabric}.00€</p>
               </div>
               <div className="sub section flex">
-                <p> 80 cm backboard</p>
+                <p> 80 cm Backboard</p>
                 <p>+ 50.00€</p>
               </div>
             </div>
+            <div className="devider"></div>
             <div className="section">
               <div className="flex">
                 <p>Legs:</p>
@@ -80,6 +82,7 @@ const Step4 = (props) => {
                 <p>+ {price.leg}.00€</p>
               </div>
             </div>
+            <div className="devider"></div>
             <div className="section">
               <div className="flex">
                 <p>Matres:</p>
@@ -89,15 +92,15 @@ const Step4 = (props) => {
                 {price.matres % 1 === 0 ?  <p>+ {price.matres}.00€</p> : <p>+ {price.matres}0€</p>}
               </div>
               <div className="sub section flex">
-                <p>basic model</p>
+                <p>Basic Model</p>
                 <p>+ 00.00€</p>
               </div>
             </div>
           </div>
           <div className="total">
             <div className="flex">
-              <p>TOTAL</p>
-              <p>{price.total}€</p>
+              <p>Total</p>
+              <p><span className="EUR">EUR</span> {price.total}€</p>
             </div>
           </div>
         </div>

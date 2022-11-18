@@ -4,6 +4,7 @@ import { ReactComponent as Svg7 } from "../assets/svgs/thin-expand-arrows-svgrep
 import  { ReactComponent as Svg10 } from "../assets/svgs/silk-svgrepo-com.svg"
 import { ReactComponent as Svg8 } from "../assets/svgs/furniture-home-house-7-svgrepo-com.svg"
 import { ReactComponent as Svg5 } from "../assets/svgs/cart-svgrepo-com.svg"
+import { ReactComponent as Svg4 } from "../assets/svgs/sleep-svgrepo-com.svg"
 
 const Header = (props) => {
   useEffect(() => {
@@ -34,7 +35,7 @@ const Header = (props) => {
   let stroke1 = standardColor
   let stroke2 = standardColor
   let stroke3 = standardColor
-  let stroke4 = standardColor
+  let stroke4 = 0.2
   let stroke5 = standardColor
 
   let highlight = "black"
@@ -50,7 +51,7 @@ const Header = (props) => {
       stroke3 = highlight
       break;
     case 4: 
-      stroke4 = highlight
+      stroke4 = 1
       break;
     case 5: 
       stroke5 = highlight
@@ -107,6 +108,7 @@ const Header = (props) => {
             <br></br>
             <span>4</span>
           </div>
+          <Svg4 className="svg svg4" opacity={stroke4}/>
         </div>
         <div className="arrow">
           <div className="arrow-cover"></div>

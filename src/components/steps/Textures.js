@@ -275,7 +275,7 @@ export const addTexture = () => {
   let bigBlanketMaterial = new THREE.MeshStandardMaterial({ 
     map: bigBlanketColorMap,
     normalMap: bigBlanketNormalMap,
-    roughnessMap: bigBlanketRoughnessMap,
+    // roughnessMap: bigBlanketRoughnessMap,
     roughness: 1
   })
 
@@ -322,7 +322,7 @@ export const addTexture = () => {
   let outsidePillowsMaterial = new THREE.MeshStandardMaterial({ 
     map: outsidePillowsColorMap,
     normalMap: outsidePillowsNormalMap,
-    roughnessMap: outsidePillowsRoughnessMap,
+    // roughnessMap: outsidePillowsRoughnessMap,
     roughness: 1,
   })
 

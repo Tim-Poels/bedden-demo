@@ -42,6 +42,7 @@
   width: 100%;
   transform: translateY(-1px);
   background-color: white;
+  opacity: 1;
 }
 
 .configurator-step-text {
@@ -51,26 +52,42 @@
   justify-content: center;
 }
 
+.step-3 > div, .step-5 > div{
+  box-sizing: content-box;
+}
+
 .configurator-step-text > .svg {
   height: 50px;
   aspect-ratio: 1 / 1;
-  transform: translateY(10px);
+  position: absolute;
+  z-index: 2;
+  transform: translateY(6vh);
+}
+
+@media only screen and (max-height: 800px) {
+  .configurator-step-text > .svg {
+    height: 40px;
+  }
 }
 
 .svg1 {
-  transform: translateY(10px) scale(65%, 65%)!important;
+  transform: translateY(6vh) scale(65%, 65%) !important;
 }
 
 .svg2 {
-  transform: translateY(10px) scale(75%, 75%) !important;
+  transform: translateY(6vh) scale(75%, 75%) !important;
 }
 
 .svg3 {
-  transform: translateY(10px) scale(105%, 105%)!important;
+  transform: translateY(6vh) scale(105%, 105%) !important;
+}
+
+.svg4 {
+  transform: translateY(6vh) scale(125%, 125%) !important;
 }
 
 .svg5 {
-  transform: translate(-3px, 10px) scale(85%, 85%)!important;
+  transform: translate(-3px, 6vh) scale(85%, 85%) !important;
 }
 
 .configurator-step-text > div {

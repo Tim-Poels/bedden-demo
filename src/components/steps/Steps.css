@@ -63,14 +63,14 @@
   scrollbar-width: none;
 }
 
-.container::-webkit-scrollbar { 
+.selection-container::-webkit-scrollbar { 
   display: none;
 }
 
 .selection-container > .title {
-  font-weight: 300;
-  font-size: 22px;
-  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 4px;
   padding-bottom: 20px;
 }
 
@@ -117,6 +117,7 @@
   border: 1px solid lightgrey;
   margin: 3px 3px 0px 0px;
   padding: 3px;
+  border-radius: 2px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -201,13 +202,14 @@ input[type=range]::-webkit-slider-thumb {
   background: #0078FF;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -6px;
+  margin-top: -2px;
   transition: 0.1s;
 }
 
 input[type=range]::-webkit-slider-thumb:active {
   height: 18px;
   width: 18px;
+  margin-top: -5px;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
@@ -287,10 +289,13 @@ input[type=range]:focus::-ms-fill-upper {
 /* BILL */
 
 .checkout-tab {
-  background-color: rgb(226, 226, 226);
+  /* background-color: #fff2dd; */
+  background-color: rgb(252, 252, 252);
   margin: 20px 0px;
   padding: 10px 20px;
   height: 100%;
+  border-radius: 7px;
+  box-shadow: 0px 0px 8px 0px rgb(213, 213, 213);
 }
 
 .checkout-tab .bill {
@@ -303,7 +308,14 @@ input[type=range]:focus::-ms-fill-upper {
 .checkout-tab .flex {
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
+  padding: 10px 0px;
+}
+
+.checkout-tab .devider {
+  width: 100%;
+  margin: 0px 0;
+  height: 1px;
+  background-color: lightgrey;
 }
 
 .checkout-tab .section {
@@ -311,7 +323,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .checkout-tab .sub {
-  padding-top: 2.5px;
+  padding-top: 0px;
 }
 
 .checkout-tab .items-display {
@@ -321,4 +333,10 @@ input[type=range]:focus::-ms-fill-upper {
 .checkout-tab .total {
   border-top: 2px solid black;
   padding-bottom: 10px;
+  font-size: 24px
+}
+
+.EUR {
+  color: rgb(200, 200, 200);
+  font-size: 18px;
 }

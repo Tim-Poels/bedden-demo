@@ -82,7 +82,8 @@ export const CanvasElement = React.memo((props) => {
 
         addTexture();
         
-        let oldLegs = getBed(scene).legs;
+        let bedObject = getBed(scene)
+        let oldLegs = bedObject.legs;
         oldLegs.removeFromParent();
         scene.remove(oldLegs)
         
@@ -112,6 +113,9 @@ export const CanvasElement = React.memo((props) => {
         bedFloor.name = "bedFloor"
         
         scene.add(bedFloor)
+
+        bedObject.smallBlanket.removeFromParent();
+        scene.remove(bedObject.smallBlanket)
         
       },
 	    // called while loading is progressing
@@ -128,7 +132,7 @@ export const CanvasElement = React.memo((props) => {
     const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 10),
     new THREE.ShadowMaterial({
-        opacity: 0.7
+        opacity: 0.5
       })
     )
 
@@ -143,7 +147,7 @@ export const CanvasElement = React.memo((props) => {
     scene.add(ambientLight)
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7)
-    directionalLight.position.set(5, 5, 5)
+    directionalLight.position.set(3, 15, 3)
     scene.add(directionalLight)
 
     directionalLight.castShadow = true;
@@ -153,11 +157,11 @@ export const CanvasElement = React.memo((props) => {
 
     directionalLight.shadow.camera.top = 2
     directionalLight.shadow.camera.right = -2
-    directionalLight.shadow.camera.bottom = -1
+    directionalLight.shadow.camera.bottom = -2
     directionalLight.shadow.camera.left = 2
 
-    directionalLight.shadow.camera.near = 6;
-    directionalLight.shadow.camera.far = 12;
+    directionalLight.shadow.camera.near = 13;
+    directionalLight.shadow.camera.far = 16.5;
 
     // const helper = new THREE.CameraHelper(directionalLight.shadow.camera)
     // scene.add(helper)

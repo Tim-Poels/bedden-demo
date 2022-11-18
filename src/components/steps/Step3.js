@@ -81,21 +81,19 @@ const Step3 = (props) => {
   
   let colors = []
   
-  let colorCovers = [blackSteel, whiteSteel, lightSteel, darkSteel]
+  let colorCovers = [lightSteel, blackSteel, whiteSteel, darkSteel]
   
   if (!colorMaterials[0]) {
-    
+      colorMaterials.push(
+        new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture0"
+      )
   
     colorMaterials.push(
-      new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 }) // id: "legTexture0"
+      new THREE.MeshStandardMaterial({ color: "#222222", roughness: 0.2, metalness: 0.85 }) // id: "legTexture1"
     )
   
     colorMaterials.push(
-      new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture1"
-    )
-  
-    colorMaterials.push(
-      new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture2"
+      new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture2"
     )
   
     colorMaterials.push(
@@ -105,6 +103,29 @@ const Step3 = (props) => {
 
 
   for (let i = 0; i < colorCovers.length; i++) {
+    let legMaterialText1 = "error"
+    let legMaterialText2 = "error"
+    switch (parseInt(i, 10)) {
+      case 0:
+        legMaterialText1 = "Light Grey"
+        legMaterialText2 = "Steel"
+        break;
+      case 1:
+        legMaterialText1 = "Black"
+        legMaterialText2 = "Steel"
+        break;
+      case 2:
+        legMaterialText1 = "White"
+        legMaterialText2 = "Steel"
+        break;
+      case 3:
+        legMaterialText1 = "Dark Grey"
+        legMaterialText2 = "Steel"
+        break;
+      default:
+        legMaterialText2 = "error in step5.js"
+        break;
+  }
     colors.push(
       <div className="checkbox" id={"legTexture" + i} key={i}  onClick={() => {
           let leg = findOtherLegs()
@@ -121,9 +142,8 @@ const Step3 = (props) => {
         <div className="img-container">
           <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]}></img>
         </div>
-        <div className="checkbox-name">{"test"}</div>
-        <div className="checkbox-name">{"test"}</div>
-        <div className="checkbox-checker"></div>
+        <div className="checkbox-name">{legMaterialText1}</div>
+        <div className="checkbox-name">{legMaterialText2}</div>
       </div>
     )
   }
@@ -255,16 +275,17 @@ export const loadLegs = (url) => {
 
       if (!colorMaterials[num]) {
         colorMaterials.push(
-          new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 }) // id: "legTexture0"
+          new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture0"
         )
 
         colorMaterials.push(
-          new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture1"
+          new THREE.MeshStandardMaterial({ color: "black", roughness: 0.2, metalness: 0.85 }) // id: "legTexture1"
         )
 
         colorMaterials.push(
-          new THREE.MeshStandardMaterial({ color: "lightgray", roughness: 0.2 }) // id: "legTexture2"
+          new THREE.MeshStandardMaterial({ color: "white", roughness: 0.2 }) // id: "legTexture2"
         )
+
 
         colorMaterials.push(
           new THREE.MeshStandardMaterial({ color: "gray", roughness: 0.2 }) // id: "legTexture3"
