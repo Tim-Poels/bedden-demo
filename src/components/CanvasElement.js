@@ -146,7 +146,7 @@ export const CanvasElement = React.memo((props) => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
     scene.add(ambientLight)
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
     directionalLight.position.set(3, 15, 3)
     scene.add(directionalLight)
 
