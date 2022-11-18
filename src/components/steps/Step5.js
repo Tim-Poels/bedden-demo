@@ -9,9 +9,9 @@ const Step4 = (props) => {
   let mesurements = `${width} cm x ${length} cm`
   let matresMesurements = `${width - 10} cm x ${length - 10} cm`
 
-  let fabricText = sessionStorage.getItem("texture").split("-")[0] + " fabric"
+  let fabricText = sessionStorage.getItem("texture").split("-")[0] + " Fabric"
 
-  let legModelText = "model " + sessionStorage.getItem("currentLeg").split(".")[0].split("_")[2]
+  let legModelText = "Model " + sessionStorage.getItem("currentLeg").split(".")[0].split("_")[2]
 
   let legMaterialText = "error"
   let materialName = sessionStorage.getItem("currentLegTexture").split("Texture")[1]

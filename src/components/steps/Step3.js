@@ -51,9 +51,8 @@ const Step3 = (props) => {
   //all the locations of the glb models of the legs
   for (let i = 0; i < legURLs.length ; i++) {
     legs.push(
-      <div className="checkbox" id={legURLs[i]} key={i}>
-        <img className="checkbox-img"  alt="error loading img" src={pictures[i]} onClick={() => {
-          console.log("the legs are active output: " + !(sessionStorage.getItem("currentLeg") === legURLs[i]))
+      <div className="checkbox" id={legURLs[i]} key={i}
+      onClick={() => {
           //check if the leg is already the active one
           if (!(sessionStorage.getItem("currentLeg") === legURLs[i])) {
             //remove the other leg
@@ -69,7 +68,12 @@ const Step3 = (props) => {
 
             setCurrentLeg(legURLs[i])
           }
-        }} ></img>
+        }}>
+        <div className="img-container">
+          <img className="checkbox-img"  alt="error loading img" src={pictures[i]}></img>
+        </div>
+        <div className="checkbox-name">{"  "}</div>
+        <div className="checkbox-name">{"Model " + legURLs[i].split(".")[0].split("_")[2]}</div>
         <div className="checkbox-checker"></div>
       </div>
     )
@@ -102,8 +106,7 @@ const Step3 = (props) => {
 
   for (let i = 0; i < colorCovers.length; i++) {
     colors.push(
-      <div className="checkbox" id={"legTexture" + i} key={i}>
-        <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]} onClick={() => {
+      <div className="checkbox" id={"legTexture" + i} key={i}  onClick={() => {
           let leg = findOtherLegs()
           leg.traverse((mesh) => {
             if (mesh.isMesh) mesh.material = colorMaterials[i]
@@ -114,7 +117,12 @@ const Step3 = (props) => {
 
           setCurrentLegTexture("legTexture" + i)
           
-        }}></img>
+        }}>
+        <div className="img-container">
+          <img className="checkbox-img"  alt="error loading img" src={colorCovers[i]}></img>
+        </div>
+        <div className="checkbox-name">{"test"}</div>
+        <div className="checkbox-name">{"test"}</div>
         <div className="checkbox-checker"></div>
       </div>
     )

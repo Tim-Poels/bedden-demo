@@ -53,8 +53,8 @@ import bigBlanketNormal from "../../assets/textures/Normal/bigBlanket.jpg"
 import bigBlanketRoughness from "../../assets/textures/Roughness/bigBlanket.jpg"
 
 import middlePillowColor from "../../assets/textures/Color/middlePillow.jpg"
-import middlePillowNormal from "../../assets/textures/Normal/middlePillow.jpg"
-import middlePillowRoughness from "../../assets/textures/Roughness/middlePillow.jpg"
+import middlePillowNormal from "../../assets/textures/Normal/outsidePillows.jpg"
+import middlePillowRoughness from "../../assets/textures/Roughness/outsidePillows.jpg"
 
 import outsidePillowsColor from "../../assets/textures/Color/outsidePillows.jpg"
 import outsidePillowsNormal from "../../assets/textures/Normal/outsidePillows.jpg"
@@ -255,11 +255,7 @@ export const addTexture = () => {
 
   bed.matres.material = matresMaterial
 
-  bed.middlePillow.material = matresMaterial
-
   bed.longPillow.material = matresMaterial
-
-  bed.outsidePillows.material = matresMaterial
 
   let bigBlanketColorMap = textureLoader.load( bigBlanketColor )
   bigBlanketColorMap.wrapS = THREE.RepeatWrapping;
@@ -288,17 +284,17 @@ export const addTexture = () => {
   let middlePillowColorMap = textureLoader.load( middlePillowColor )
   middlePillowColorMap.wrapS = THREE.RepeatWrapping;
   middlePillowColorMap.wrapT = THREE.RepeatWrapping;
-  middlePillowColorMap.repeat.set(1.5, 1.5);
+  middlePillowColorMap.repeat.set(2, 2);
 
   let middlePillowRoughnessMap = textureLoader.load( middlePillowRoughness )
   middlePillowRoughnessMap.wrapS = THREE.RepeatWrapping;
   middlePillowRoughnessMap.wrapT = THREE.RepeatWrapping;
-  middlePillowRoughnessMap.repeat.set(1.5, 1.5);
+  middlePillowRoughnessMap.repeat.set(2, 2);
 
   let middlePillowNormalMap = textureLoader.load( middlePillowNormal )
   middlePillowNormalMap.wrapS = THREE.RepeatWrapping;
   middlePillowNormalMap.wrapT = THREE.RepeatWrapping;
-  middlePillowNormalMap.repeat.set(1.5, 1.5);
+  middlePillowNormalMap.repeat.set(2, 2);
 
   let middlePillowMaterial = new THREE.MeshStandardMaterial({ 
     map: middlePillowColorMap,
@@ -311,17 +307,17 @@ export const addTexture = () => {
   let outsidePillowsColorMap = textureLoader.load( outsidePillowsColor )
   outsidePillowsColorMap.wrapS = THREE.RepeatWrapping;
   outsidePillowsColorMap.wrapT = THREE.RepeatWrapping;
-  outsidePillowsColorMap.repeat.set(2.5, 2.5);
+  outsidePillowsColorMap.repeat.set(2, 2);
 
   let outsidePillowsRoughnessMap = textureLoader.load( outsidePillowsRoughness )
   middlePillowRoughnessMap.wrapS = THREE.RepeatWrapping;
   middlePillowRoughnessMap.wrapT = THREE.RepeatWrapping;
-  middlePillowRoughnessMap.repeat.set(2.5, 2.5);
+  middlePillowRoughnessMap.repeat.set(2, 2);
 
   let outsidePillowsNormalMap = textureLoader.load( outsidePillowsNormal )
   outsidePillowsNormalMap.wrapS = THREE.RepeatWrapping;
   outsidePillowsNormalMap.wrapT = THREE.RepeatWrapping;
-  outsidePillowsNormalMap.repeat.set(2.5, 2.5);
+  outsidePillowsNormalMap.repeat.set(2, 2);
 
   let outsidePillowsMaterial = new THREE.MeshStandardMaterial({ 
     map: outsidePillowsColorMap,
